@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Seres imaginarios que dejan huella</title>
+    <description>danielprz writeups y cosas...</description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 13 Apr 2024 03:41:00 +0200</pubDate>
+    <lastBuildDate>Sat, 13 Apr 2024 03:41:00 +0200</lastBuildDate>
+    <generator>Jekyll v4.3.1</generator>
+    <image>
+     <url>http://localhost:4000/assets/ninja1.png</url>
+     <title>Diaries of a Modern Ninja</title>
+     <link>http://localhost:4000</link>
+    </image>
+    
+  </channel>
+</rss>
