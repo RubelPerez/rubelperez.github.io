@@ -57,8 +57,6 @@ In other words in this way you work with two branches, the main/master branch is
 
 
 
-
-
 ## License
 
 CC0 1.0 Universal
