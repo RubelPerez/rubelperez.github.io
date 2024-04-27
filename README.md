@@ -55,6 +55,15 @@ In other words in this way you work with two branches, the main/master branch is
 
 3) You can use [CloudFlare](https://www.cloudflare.com/) or [Namecheap](https://www.namecheap.com/domains/freedns/) as your nameserver provider for your custom domain. CloudFlare has also nice security and firewall features and it is also a caching proxy that speeds up your website speed.
 
+4) For more info on how to create your website using Github-Pages and Jekyll themes use the following resources:
+
+* https://docs.github.com/en/pages
+
+* https://jekyllrb.com/docs/ and for more themes and resources: https://jekyllrb.com/resources/
+
+* https://medium.com/@samdutton/github-pages-cloudflare-custom-domain-checklist-e86c786194a4
+
+* https://www.youtube.com/playlist?list=PLWzwUIYZpnJuT0sH4BN56P5oWTdHJiTNq
 
 
 ## License

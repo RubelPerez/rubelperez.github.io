@@ -5,14 +5,34 @@
     <description>danielprz writeups y cosas...</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 14 Apr 2024 22:10:20 +0200</pubDate>
-    <lastBuildDate>Sun, 14 Apr 2024 22:10:20 +0200</lastBuildDate>
+    <pubDate>Sat, 27 Apr 2024 16:41:45 +0200</pubDate>
+    <lastBuildDate>Sat, 27 Apr 2024 16:41:45 +0200</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
     <image>
      <url>http://localhost:4000/assets/ninja1.png</url>
      <title>Diaries of a Modern Ninja</title>
      <link>http://localhost:4000</link>
     </image>
+    
+      <item>
+        <title>dockerlab.es: máquina Fileception</title>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/dockerlab.es_fileception/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; En esta ocasión, realizaremos un hack a una máquina de dificultad media en docker llamada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fileception&lt;/code&gt;, y tal vez, sepamos por que se llama así. Aprenderemos sobre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;esteganografía&lt;/code&gt;, la cual gira completamente esta máquina.&lt;/p&gt; &lt;h3 id=&quot;enlace-de-lab&quot;&gt;Enlace de Lab:&lt;/h3&gt; &lt;p&gt;&lt;a href=&quot;https://www.dockerlabs.es/&quot;&gt;Dockerlabs: Fileception&lt;/a&gt;.&lt;/p&gt; &lt;h3 id=&quot;dificultad&quot;&gt;Dificultad:&lt;/h3&gt; &lt;p&gt;MEDIO.&lt;/p&gt; &lt;h3 id=&quot;solución&quot;&gt;Solución&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; Estas máquinas están basadas en Docker y...</description>
+        <pubDate>Sat, 27 Apr 2024 18:37:00 +0200</pubDate>
+        <link>http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception</guid>
+        
+        <category>blog</category>
+        
+        
+        <category>Esteganografia</category>
+        
+        <category>transferencia de archivos</category>
+        
+        <category>ftp</category>
+        
+        <category>encoding y decoding.</category>
+        
+      </item>
     
       <item>
         <title>HackTheBox: Máquina Backdoor</title>

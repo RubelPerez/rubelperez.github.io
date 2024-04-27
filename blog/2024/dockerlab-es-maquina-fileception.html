@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>dockerlab.es: máquina Fileception - Seres imaginarios que dejan huella</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Seres imaginarios que dejan huella" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="dockerlab.es: máquina Fileception" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception" />
+<meta property="og:site_name" content="Seres imaginarios que dejan huella" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/dockerlab.es_fileception/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-27T18:37:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/dockerlab.es_fileception/portada.png" />
+<meta property="twitter:title" content="dockerlab.es: máquina Fileception" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-04-27T18:37:00+02:00","datePublished":"2024-04-27T18:37:00+02:00","description":"danielprz writeups y cosas…","headline":"dockerlab.es: máquina Fileception","image":"http://localhost:4000/blog/assets/dockerlab.es_fileception/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception"},"url":"http://localhost:4000/blog/2024/dockerlab-es-maquina-fileception"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>dockerlab.es: máquina Fileception</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#esteganografia" class="no-decoration">Esteganografia</a></code>
+    
+      <code class="posttag"><a href="/tags/#transferencia-de-archivos" class="no-decoration">transferencia de archivos</a></code>
+    
+      <code class="posttag"><a href="/tags/#ftp" class="no-decoration">ftp</a></code>
+    
+      <code class="posttag"><a href="/tags/#encoding-y-decoding." class="no-decoration">encoding y decoding.</a></code>
+    
+  </div>
+  <time datetime="2024-04-27T18:37:00+02:00" class="by-line">27 Apr 2024</time>
+  <p><br />
+<img src="/blog/assets/dockerlab.es_fileception/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+En esta ocasión, realizaremos un hack a una máquina de dificultad media en docker llamada <code class="language-plaintext highlighter-rouge">Fileception</code>, y tal vez, sepamos por que se llama así. Aprenderemos sobre <code class="language-plaintext highlighter-rouge">esteganografía</code>, la cual gira completamente esta máquina.</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://www.dockerlabs.es/">Dockerlabs: Fileception</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>MEDIO.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br />
+Estas máquinas están basadas en Docker y mediante un archivo llamado ´auto_loader.sh´ las montaremos de una forma automática, lo primero que debemos hacer es el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./auto_deploy.sh fileception.tar
+</code></pre></div></div>
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_1.JPG" alt="" /></p>
+
+<p>Observamos que nuestra máquina está corriendo sobre la IP <code class="language-plaintext highlighter-rouge">172.17.0.2</code>, esto porque al estar en Docker por defecto corren sobre la interfaz 172.17.0.x</p>
+
+<p>Dicho esto, es momento de hacer un escaneo con <code class="language-plaintext highlighter-rouge">nmap</code>, más que nada para ver con que nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 172.17.0.2  <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_2.JPG" alt="" /></p>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-p-</code></strong>: Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que escanee todos los puertos de 1 a 65535 en el objetivo.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-Pn</code></strong>: Esta opción omite el descubrimiento de hosts.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sS</code></strong>: Realiza un escaneo SYN. Este es un tipo de escaneo sigiloso que es menos probable que sea registrado por sistemas de detección de intrusos.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">--min-rate 5000</code></strong>: Esta opción configura <code class="language-plaintext highlighter-rouge">nmap</code> para enviar paquetes a una tasa mínima de 5000 paquetes por segundo.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">--open</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-v</code></strong>: Aumenta la verbosidad del comando, lo que significa que <code class="language-plaintext highlighter-rouge">nmap</code> proporcionará más detalles sobre lo que está haciendo.</p>
+
+<p>Obtenemos 3 puertos abiertos, <code class="language-plaintext highlighter-rouge">21 -&gt; ftp</code> <code class="language-plaintext highlighter-rouge">22 -&gt; ssh</code> y <code class="language-plaintext highlighter-rouge">80 -&gt; http</code>.</p>
+
+<p>Ahora es momento de ver con que versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p21</span>,22,80 172.17.0.2 <span class="nt">-oN</span> ports_version
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_3.JPG" alt="" /></p>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>: Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinacion de ambos comandos</em>.</p>
+</blockquote>
+
+<p>Nos percatamos que ocurre algo interesante con el ftp, más especifico <code class="language-plaintext highlighter-rouge">ftp-anon: Anonymous FTP login allowed</code>.</p>
+
+<p>Esto no es más que una característica que, gracias a FTP, sin necesidad de proporcionar contraseña podemos acceder a este servicio con el usuario <code class="language-plaintext highlighter-rouge">anoymous</code>.</p>
+
+<p>Pues, eso hacemos. Accedemos al ftp con el comando:</p>
+
+<div class="language-ssh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ftp</span> <span class="m">172</span>.17.0.2
+</code></pre></div></div>
+
+<p>Al momento que nos pida un usuario, escribimos:</p>
+
+<p><code class="language-plaintext highlighter-rouge">anonymous</code></p>
+
+<p>Y perfecto, ya tendríamos acceso. Dentro del directorio si hacemos un <code class="language-plaintext highlighter-rouge">ls</code> veremos que hay una imagen que se llama hello_peter.jpg.</p>
+
+<p>La descargamos con el comando <code class="language-plaintext highlighter-rouge">get</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_4.JPG" alt="" /></p>
+
+<p>Vemos la imagen y es simplemente esto:</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_5.jpg" alt="" /></p>
+
+<p>Pues, si es todo lo que podemos extraer del servicio <code class="language-plaintext highlighter-rouge">FTP</code>, pues pasaríamos al siguiente. En el puerto 22, como suponemos que tenemos el usuario Peter podríamos hacer un ataque de fuerza bruta, pero mejor usarlo como última opción una vez hemos agotado todos los recursos.</p>
+
+<p>Vamos al puerto <code class="language-plaintext highlighter-rouge">80</code> que estaba corriendo un servicio <code class="language-plaintext highlighter-rouge">http</code> de <code class="language-plaintext highlighter-rouge">apache</code>.</p>
+
+<p>Si nos vamos al código fuente de la página, hay una sección comentada que dice lo siguiente:</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_6.JPG" alt="" /></p>
+
+<p>De aquí extraemos esta contraseña <code class="language-plaintext highlighter-rouge">@UX=h?T9oMA7]7hA7]:YE+*g/GAhM4</code> en un <code class="language-plaintext highlighter-rouge">enconding</code> <code class="language-plaintext highlighter-rouge">baseXX</code>. Investigando entre los diferentes encoding de base, el que funciona es el <code class="language-plaintext highlighter-rouge">base85</code> el cual nos arroja el siguiente resultado:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>base_85_decoded_password
+</code></pre></div></div>
+
+<p>Pero si seguimos leyendo el texto, vemos que habla de <code class="language-plaintext highlighter-rouge">esteganografía</code>. La cual según Wikipedia es:</p>
+
+<blockquote>
+  <p>La esteganografía se trata del estudio y aplicación de técnicas que permiten ocultar mensajes u objetos, dentro de otros, llamados <em>portadores</em>, para que no se perciba su existencia.</p>
+</blockquote>
+
+<p>Partiendo de esta definición, y como tenemos una imagen podemos ver si a lo mejor hay un archivo dentro de la imagen.</p>
+
+<p>Usaremos una herramienta para estos fines; se llama <code class="language-plaintext highlighter-rouge">steghide</code> y sirve tanto para extraer archivos como para introducir uno dentro del otro.</p>
+
+<p>Corremos el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>steghide extract <span class="nt">-sf</span> hello_peter.jpg
+</code></pre></div></div>
+
+<p>Al momento de que nos pida el <code class="language-plaintext highlighter-rouge">salvoconducto</code> proporcionamos la contraseña encontrada anteriormente <code class="language-plaintext highlighter-rouge">base_85_decoded_password</code></p>
+
+<p>Y vemos que efectivamente, se encontraba un archivo llamado <code class="language-plaintext highlighter-rouge">you_find_me.txt</code> dentro de la imagen.</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_7.JPG" alt="" /></p>
+
+<p>Si vemos el contenido de ese archivo. Inmediatamente veremos que tiene un formato bastante extraño, repletos de <code class="language-plaintext highlighter-rouge">ook</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook! Ook?  Ook. Ook?  Ook. Ook.  Ook. Ook?  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook?  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook?  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook? Ook.  Ook? Ook.  Ook? Ook.  Ook? Ook.  Ook! Ook!  Ook? Ook!  Ook. Ook?  Ook. Ook?  Ook. Ook?  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook.  Ook. Ook?  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook! Ook.  Ook? Ook.  Ook! Ook!  Ook! Ook.  Ook! Ook.  Ook. Ook.  Ook! Ook.  Ook. Ook?  Ook! Ook.  Ook? Ook.  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook!  Ook! Ook.  Ook. Ook.  Ook! Ook.  Ook. Ook?  Ook! Ook.  Ook! Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook. Ook.  Ook! Ook.  Ook! Ook.  Ook? Ook.  Ook! Ook!  Ook! Ook.  Ook. Ook.  Ook! Ook.
+</code></pre></div></div>
+
+<p>Buscamos esto en <code class="language-plaintext highlighter-rouge">Google</code>, y vemos que pertenece a la misma familia de <code class="language-plaintext highlighter-rouge">lenguajes de programación esotéricos</code> y se llama concretamente <code class="language-plaintext highlighter-rouge">ook!</code>.</p>
+
+<p>Vamos a traducirlo a ASCII y veremos que ya sí que es un texto más legible y lógico.</p>
+
+<blockquote>
+  <p><strong><em>tener muy en cuenta los espacios al momento de copiarlo para traducirlos</em></strong></p>
+</blockquote>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_9.JPG" alt="" /></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9h889h23hhss2
+</code></pre></div></div>
+
+<p>Ya tenemos el usuario <code class="language-plaintext highlighter-rouge">Peter</code> y también la clave. Ahora es momento de acceder al <code class="language-plaintext highlighter-rouge">puerto 22</code> mediante <code class="language-plaintext highlighter-rouge">ssh</code> con el siguiente código y verificar si en realidad funciona.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh peter@172.17.0.2
+</code></pre></div></div>
+
+<p>Ponemos la clave cuando nos la pida, y vemos que efectivamente tenemos acceso como Peter al servidor.</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_10.JPG" alt="" /></p>
+
+<p>Es momento de ver que podemos y no podemos hacer. Y como lamentablemente, no pertenecemos al grupo <code class="language-plaintext highlighter-rouge">sudoers</code> estamos sumamente limitados.</p>
+
+<p>Pero si hacemos un <code class="language-plaintext highlighter-rouge">ls</code> en la ruta donde nos abrio el ssh <code class="language-plaintext highlighter-rouge">/home/peter/</code> veremos que hay un archivo llamado <code class="language-plaintext highlighter-rouge">nota_importante.txt</code> que dice lo siguiente:</p>
+
+<blockquote>
+  <p>NO REINICIES EL SISTEMA !!</p>
+
+  <p>HAY UN ARCHIVO IMPORTANTE EN TMP</p>
+</blockquote>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_11.JPG" alt="" /></p>
+
+<p>Pues, si nos vamos a la ruta <code class="language-plaintext highlighter-rouge">/tmp</code> hay dos archivos</p>
+
+<blockquote>
+  <p>importante_octopus.odt</p>
+
+  <p>recuerdos_del_sysadmin.txt</p>
+</blockquote>
+
+<p>Vemos el <code class="language-plaintext highlighter-rouge">txt</code> el cual nos narra lo siguiente:</p>
+
+<blockquote>
+  <p>Cuando era niño recuerdo que, a los videos, para pasarlos de flv a mp4, solo cambiaba la extensión. Que iluso.</p>
+</blockquote>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_12.JPG" alt="" /></p>
+
+<p>El siguiente archivo con extensión <code class="language-plaintext highlighter-rouge">odt</code> es un archivo de <code class="language-plaintext highlighter-rouge">libreoffice</code> el equivalente a <code class="language-plaintext highlighter-rouge">microsoft office</code> para <code class="language-plaintext highlighter-rouge">Linux</code></p>
+
+<p>Como no podemos hacer mucho en el servidor, nos lo descargamos con el comando de <code class="language-plaintext highlighter-rouge">scp (Secure Copy Protocol)</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp peter@172.17.0.2:/tmp/importante_octopus.odt ./
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_13.JPG" alt="" /></p>
+
+<p>Si tenemos <code class="language-plaintext highlighter-rouge">libreoffice</code> instalado y lo abrimos, nos aparecerá el siguiente aviso:</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_14.JPG" alt="" /></p>
+
+<blockquote>
+  <p><strong>nota</strong>: Este aviso no aparece en plataforma Windows</p>
+</blockquote>
+
+<p>Su contenido es el mismo de <code class="language-plaintext highlighter-rouge">recuerdos_del_sysadmin.txt</code>, lo cual no aporta nada.</p>
+
+<p>Pero, y si la anécdota de cambiar la extensión de los archivos es una pista.</p>
+
+<p>Si buscamos por internet, nos cuenta que:</p>
+
+<blockquote>
+  <p>Un archivo <em>.docx</em> se comporta como un archivo ZIP que <strong>almacena</strong> el contenido (texto e imágenes) <strong>en datos XML y CSS</strong> y, a continuación, los <strong>comprime</strong>. Al abrir el archivo <em>.docx</em>, el contenido se vuelve a descomprimir.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+  <p>[….]</p>
+
+  <p><strong>un documento de Word con extensión DOCX no es más que un contenedor de archivos</strong>.<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></p>
+</blockquote>
+
+<p>Partiendo de estas afirmaciones, y sabiendo que libreoffice y word son totalmente compatibles, pues da a pensar que, tanto word como libreoffice usan la misma técnica para crear sus archivos.</p>
+
+<p>cambiamos de extensión el archivo con el comando</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv </span>importante_octopus.odt importante_octopus.zip 
+</code></pre></div></div>
+
+<p>Vemos que lo extraemos sin problema y parece que todo está en orden. Hasta que encontramos un archivo oculto llamado <code class="language-plaintext highlighter-rouge">leerme.xml</code>.</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_16.JPG" alt="" /></p>
+
+<p>Y si lo vemos, este es su contenido</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_17.JPG" alt="" /></p>
+
+<p>Vemos, que son las credenciales del <code class="language-plaintext highlighter-rouge">sysadmin</code>, por lo cual, ya deberíamos tener acceso <code class="language-plaintext highlighter-rouge">root</code>.</p>
+
+<p>La clave se encuentra en <code class="language-plaintext highlighter-rouge">base64</code> si le hacemos un <code class="language-plaintext highlighter-rouge">decode</code>, nos dará el siguiente texto:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>80h2380h34uouo3h4
+</code></pre></div></div>
+
+<p>Y si nos conectamos por ssh con el comando</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh octopus@172.17.0.2
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_18.JPG" alt="" /></p>
+
+<p>Perfecto! Ya somos usuario root!</p>
+
+<p>Y, para eliminar el laboratorio, simplemente con <code class="language-plaintext highlighter-rouge">ctrl+c</code> el bash script se encargaría de todo.</p>
+
+<p><img src="/blog/assets/dockerlab.es_fileception/paso_19.png" alt="" /></p>
+
+<p><br /></p>
+<h3 id="referencias"><em>Referencias</em></h3>
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.ionos.es/digitalguide/online-marketing/vender-en-internet/que-es-un-archivo-docx/">.docx: todo sobre la extensión de Microsoft Word</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://www.gonduana.com/lo-que-la-extension-docx-esconde/">Lo que la extensión DOCX esconde</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>
