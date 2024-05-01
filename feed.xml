@@ -5,14 +5,46 @@
     <description>danielprz writeups y cosas...</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Apr 2024 16:41:45 +0200</pubDate>
-    <lastBuildDate>Sat, 27 Apr 2024 16:41:45 +0200</lastBuildDate>
-    <generator>Jekyll v4.3.1</generator>
+    <pubDate>Wed, 01 May 2024 05:48:19 +0200</pubDate>
+    <lastBuildDate>Wed, 01 May 2024 05:48:19 +0200</lastBuildDate>
+    <generator>Jekyll v4.3.3</generator>
     <image>
      <url>http://localhost:4000/assets/ninja1.png</url>
      <title>Diaries of a Modern Ninja</title>
      <link>http://localhost:4000</link>
     </image>
+    
+      <item>
+        <title>dockerlab.es: máquina Move</title>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/dockerlab.es_move/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; Aquí detallaremos el proceso de identificación y explotación de vulnerabilidades en una máquina Docker desplegada en un entorno de laboratorio. La máquina presenta múltiples servicios expuestos, incluyendo Grafana, Apache y un servidor FTP, cada uno con sus propias configuraciones y potenciales debilidades de seguridad. Los pasos cubren desde el escaneo de puertos hasta la explotación de servicios específicos y la elevación...</description>
+        <pubDate>Wed, 01 May 2024 11:10:00 +0200</pubDate>
+        <link>http://localhost:4000/blog/2024/dockerlab-es-maquina-move</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/dockerlab-es-maquina-move</guid>
+        
+        <category>blog</category>
+        
+        
+        <category>Docker</category>
+        
+        <category>Grafana</category>
+        
+        <category>Apache</category>
+        
+        <category>FTP</category>
+        
+        <category>Penetration Testing</category>
+        
+        <category>Vulnerability Assessment</category>
+        
+        <category>Cybersecurity</category>
+        
+        <category>Kali Linux</category>
+        
+        <category>Network Scanning</category>
+        
+        <category>Security Exploits</category>
+        
+      </item>
     
       <item>
         <title>dockerlab.es: máquina Fileception</title>

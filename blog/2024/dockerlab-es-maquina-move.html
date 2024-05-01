@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>dockerlab.es: máquina Move - Seres imaginarios que dejan huella</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Seres imaginarios que dejan huella" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="dockerlab.es: máquina Move" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/dockerlab-es-maquina-move" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/dockerlab-es-maquina-move" />
+<meta property="og:site_name" content="Seres imaginarios que dejan huella" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/dockerlab.es_move/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-01T11:10:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/dockerlab.es_move/portada.png" />
+<meta property="twitter:title" content="dockerlab.es: máquina Move" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-05-01T11:10:00+02:00","datePublished":"2024-05-01T11:10:00+02:00","description":"danielprz writeups y cosas…","headline":"dockerlab.es: máquina Move","image":"http://localhost:4000/blog/assets/dockerlab.es_move/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/dockerlab-es-maquina-move"},"url":"http://localhost:4000/blog/2024/dockerlab-es-maquina-move"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>dockerlab.es: máquina Move</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#docker" class="no-decoration">Docker</a></code>
+    
+      <code class="posttag"><a href="/tags/#grafana" class="no-decoration">Grafana</a></code>
+    
+      <code class="posttag"><a href="/tags/#apache" class="no-decoration">Apache</a></code>
+    
+      <code class="posttag"><a href="/tags/#ftp" class="no-decoration">FTP</a></code>
+    
+      <code class="posttag"><a href="/tags/#penetration-testing" class="no-decoration">Penetration Testing</a></code>
+    
+      <code class="posttag"><a href="/tags/#vulnerability-assessment" class="no-decoration">Vulnerability Assessment</a></code>
+    
+      <code class="posttag"><a href="/tags/#cybersecurity" class="no-decoration">Cybersecurity</a></code>
+    
+      <code class="posttag"><a href="/tags/#kali-linux" class="no-decoration">Kali Linux</a></code>
+    
+      <code class="posttag"><a href="/tags/#network-scanning" class="no-decoration">Network Scanning</a></code>
+    
+      <code class="posttag"><a href="/tags/#security-exploits" class="no-decoration">Security Exploits</a></code>
+    
+  </div>
+  <time datetime="2024-05-01T11:10:00+02:00" class="by-line">01 May 2024</time>
+  <p><br />
+<img src="/blog/assets/dockerlab.es_move/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+Aquí detallaremos el proceso de identificación y explotación de vulnerabilidades en una máquina Docker desplegada en un entorno de laboratorio. La máquina presenta múltiples servicios expuestos, incluyendo Grafana, Apache y un servidor FTP, cada uno con sus propias configuraciones y potenciales debilidades de seguridad. Los pasos cubren desde el escaneo de puertos hasta la explotación de servicios específicos y la elevación de privilegios, ofreciendo una visión detallada del enfoque metodológico y las herramientas utilizadas, como Nmap, Hydra y exploits personalizados, en un entorno controlado para fines educativos.</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://www.dockerlabs.es/">Dockerlabs: Move</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>Fácil.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br />
+Estas máquinas están basadas en Docker y mediante un archivo llamado ´auto_loader.sh´ las montaremos de una forma automática, lo primero que debemos hacer es el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./auto_deploy.sh move.tar
+</code></pre></div></div>
+<p><img src="/blog/assets/dockerlab.es_move/paso_1.PNG" alt="" /></p>
+
+<p>Observamos que nuestra máquina está corriendo sobre la IP <code class="language-plaintext highlighter-rouge">172.17.0.2</code>, esto porque al estar en Docker por defecto corren sobre la interfaz 172.17.0.x</p>
+
+<p>Dicho esto, es momento de hacer un escaneo con <code class="language-plaintext highlighter-rouge">nmap</code>, más que nada para ver con que nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 172.17.0.2  <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_2.PNG" alt="" /></p>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-p-</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que escanee todos los puertos de 1 a 65535 en el objetivo.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-Pn</code></strong>: Esta opción omite el descubrimiento de hosts.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sS</code></strong>Realiza un escaneo SYN. Este es un tipo de escaneo sigiloso que es menos probable que sea registrado por sistemas de detección de intrusos.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">--min-rate 5000</code></strong>Esta opción configura <code class="language-plaintext highlighter-rouge">nmap</code> para enviar paquetes a una tasa mínima de 5000 paquetes por segundo.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">--open</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-v</code></strong>: Aumenta la verbosidad del comando, lo que significa que <code class="language-plaintext highlighter-rouge">nmap</code> proporcionará más detalles sobre lo que está haciendo.</p>
+
+<p>Obtenemos 3 puertos abiertos, <code class="language-plaintext highlighter-rouge">21 -&gt; ftp</code> <code class="language-plaintext highlighter-rouge">22 -&gt; ssh</code>, <code class="language-plaintext highlighter-rouge">80 -&gt; http</code> y <code class="language-plaintext highlighter-rouge">3000 -&gt; ppp</code> .</p>
+
+<p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p21</span>,22,80 172.17.0.2 <span class="nt">-oN</span> ports_version
+</code></pre></div></div>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinación de ambos comandos</em>.</p>
+</blockquote>
+
+<p><img src="/blog/assets/dockerlab.es_move/imagen_details.png" alt="" /></p>
+
+<p>Nos arroja una cantidad inmensa de datos</p>
+
+<p>Pero, lo importante a recalcar es que nos percatamos que ocurre algo interesante con el ftp, más específico <code class="language-plaintext highlighter-rouge">ftp-anon: Anonymous FTP login allowed</code>.</p>
+
+<p>Esto no es más que una característica que, gracias a FTP, sin necesidad de proporcionar contraseña podemos acceder a este servicio con el usuario <code class="language-plaintext highlighter-rouge">anonymous</code>.</p>
+
+<p>Pues, eso hacemos. Accedemos al ftp con el comando:</p>
+
+<div class="language-ssh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ftp</span> <span class="m">172</span>.17.0.2
+</code></pre></div></div>
+
+<p>Al momento que nos pida un usuario, escribimos:</p>
+
+<p><code class="language-plaintext highlighter-rouge">anonymous</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_4.PNG" alt="" /></p>
+
+<p>Y perfecto, ya tendríamos acceso. Dentro del directorio si hacemos un <code class="language-plaintext highlighter-rouge">ls</code> veremos que hay un archivo llamado <code class="language-plaintext highlighter-rouge">database.kdbx</code></p>
+
+<p>La descargamos con el comando <code class="language-plaintext highlighter-rouge">get</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_5.PNG" alt="" /></p>
+
+<p>La extensión <code class="language-plaintext highlighter-rouge">kdbx</code> pertenece a keepass. Sabiendo esto podemos usar una herramienta llamada <code class="language-plaintext highlighter-rouge">keepass2john</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keepass2john database.kdbx
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_6.PNG" alt="" /></p>
+
+<p>Cuando ejecutamos la herramienta, nos fijamos que el método de encriptación aún no es vulnerable, lo que significa que esta no es la vía, y esto no es más que un <code class="language-plaintext highlighter-rouge">rabbit hole</code>. Debemos buscar otras vías.</p>
+
+<p>Vamos al puerto <code class="language-plaintext highlighter-rouge">http</code>, es decir a ver el puerto 80. Ejecutamos el <code class="language-plaintext highlighter-rouge">script</code> de <code class="language-plaintext highlighter-rouge">whatweb</code> para identificar que se encuentra y a que nos enfrentamos:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb http://172.17.0.2/
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_7.PNG" alt="" /></p>
+
+<p>En primera instancia, parece que es una instalación por defecto de <code class="language-plaintext highlighter-rouge">Apache</code> pero, por las dudas, hacemos un <code class="language-plaintext highlighter-rouge">fuzzeo web</code> para eliminar posibles vías de ataque.</p>
+
+<p>En este caso, utilizaremos la herramienta de <code class="language-plaintext highlighter-rouge">OWASP Dirbuster</code> la cual cuenta con interfaz gráfica que nos simplifica bastante la tarea. En este caso, utilizaremos el diccionario <code class="language-plaintext highlighter-rouge">directory-list-2-3-medium.txt</code> y que busque archivos con extensión <code class="language-plaintext highlighter-rouge">php</code> y <code class="language-plaintext highlighter-rouge">html</code>. Quedando como la siguiente imagen:</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_11.PNG" alt="" /></p>
+
+<p>Pasado un tiempo, encontramos un directorio llamado <code class="language-plaintext highlighter-rouge">maintenance.html</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_13.PNG" alt="" /></p>
+
+<p>Vemos su contenido el cual nos dice:</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_14.PNG" alt="" /></p>
+
+<p>Ya tenemos una ruta la cual mirar, una vez ganemos acceso al servidor.</p>
+
+<p>Siguiendo con los puertos que nos quedan, ahora correremos el 3000, que es el único que nos queda por evaluar.</p>
+
+<p>Identificamos que es una web, asi que como ocurrió con el puerto <code class="language-plaintext highlighter-rouge">80</code> ejecutamos el comando <code class="language-plaintext highlighter-rouge">whatweb</code> pero ahora en el puerto <code class="language-plaintext highlighter-rouge">3000</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb http://172.17.0.2:3000
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_9.PNG" alt="" /></p>
+
+<p>Vemos que estamos con <code class="language-plaintext highlighter-rouge">Grafana 8.3.0</code> y si accedemos mediante el navegador, vemos lo siguiente</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_8.PNG" alt="" /></p>
+
+<p>Cualquier usuario y contraseña que ingresamos aquí, será válido y podremos acceder al panel del admin</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_12.PNG" alt="" /></p>
+
+<p>Pero como no comprendemos exactamente este gestor de contenido, lo ideal sería buscar en internet algún <code class="language-plaintext highlighter-rouge">exploit</code> que tenga la versión.</p>
+
+<p>Hemos encontrado que esta versión es vulnerable a <code class="language-plaintext highlighter-rouge">Directory traversal</code> y <code class="language-plaintext highlighter-rouge">Arbitrary File Read</code></p>
+
+<p><img src="image.png" alt="alt text" /></p>
+
+<p>Nos descargamos el script <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> y lo ejecutamos con el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 ./grafana_path_exploit.py <span class="nt">-H</span> http://172.17.0.2:3000
+</code></pre></div></div>
+
+<p>y al momento que nos diga</p>
+
+<p><code class="language-plaintext highlighter-rouge">Read File &gt;</code></p>
+
+<p>vemos el <code class="language-plaintext highlighter-rouge">/etc/passwd</code> para ver los usuarios del sistema</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_10.PNG" alt="" /></p>
+
+<p>y vemos que tenemos a <code class="language-plaintext highlighter-rouge">freddy</code></p>
+
+<p>Pondremos la ruta que encontramos en <code class="language-plaintext highlighter-rouge">maintenance.html</code> de <code class="language-plaintext highlighter-rouge">/tmp/pass.txt</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_15.PNG" alt="" /></p>
+
+<p>Ahora es momento de que probemos el usuario <code class="language-plaintext highlighter-rouge">freddy</code> junto al texto que encontramos en <code class="language-plaintext highlighter-rouge">/tmp/pass.txt</code></p>
+
+<p>Ingresamos por <code class="language-plaintext highlighter-rouge">ssh</code> de la siguiente manera:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh freddy@172.17.0.2
+</code></pre></div></div>
+
+<p>Ponemos la contraseña y, efectivamente, ya tenemos acceso al servidor como <code class="language-plaintext highlighter-rouge">fredy</code></p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_17.PNG" alt="" /></p>
+
+<p>Ahora es momento de ver qué podemos hacer como <code class="language-plaintext highlighter-rouge">freddy</code> dentro del servidor. Si ejecutamos un <code class="language-plaintext highlighter-rouge">sudo -l</code> nos toparemos con lo siguiente:</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_18.PNG" alt="" /></p>
+
+<p>Es decir, podemos ejecutar <code class="language-plaintext highlighter-rouge">Python 3</code> en el archivo <code class="language-plaintext highlighter-rouge">/opt/maintenance.py</code> como <code class="language-plaintext highlighter-rouge">root</code> sin necesidad de proporcionar contraseña.</p>
+
+<p>Modificamos el contenido para que llame a una <code class="language-plaintext highlighter-rouge">bash</code> de la siguiente forma:</p>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_20.PNG" alt="" /></p>
+
+<p>Y ya seria ejecutar el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/bin/python3 /opt/maintenance.py
+</code></pre></div></div>
+
+<p><img src="/blog/assets/dockerlab.es_move/paso_21.PNG" alt="" /></p>
+
+<p>Y ya tendremos acceso <code class="language-plaintext highlighter-rouge">root</code> y la Máquina estaría comprometida.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.exploit-db.com/exploits/50581">Grafana exploit</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>
