@@ -1,0 +1,66 @@
+title: "Seres imaginarios que dejan huella"
+description: "danielprz writeups y cosas..."
+author:
+  name: "Danielprz21"
+  twitter: "Danielprz21"
+
+url: "https://rubelperez.github.io"
+baseurl: ""
+
+source: .
+destination: ./_site
+permalink: /:categories/:year/:title
+paginate: 3
+paginate_path: /page/:num/
+timezone: Europe/Madrid
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+future: true
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+#google_analytics: [Your Google Analytics tracking ID]
+
+# Custom variables
+owner : "danielprz21"
+year : "2024"
+
+twitter:
+  username: danielprz
+  card: summary_large_image
+
+# Contact
+social:
+  name: danielprz
+  email: "rubel.daniel.perez@gmail.com"
+  email2: "rubel.daniel.perez@outlook.com"
+  github: "rubelperez"
+  githubname: "rubelperez"
+  x: "danielprz217"
+  xname: "danielprz217"
+  #mastodon: ""
+  #mastodonhandle: "@danielprz21"
+  #mastodonname: "danielprz21"
+  linkedin: "rubeldanielperez"
+  #pgpkey: ""
+  hackthebox: "730318"
+  tryhackme: "danielprz217"
+  # discorduser: ""
+  #discordserver: ""
+  #discordservername: ""
+  #wickrme: "danielprz21"
+  #linktree: "danielprz21"
+  #tellonym: "__danielprz21__"
+  links:
+    - https://twitter.com/danielprz21
+    - https://github.com/rubelperez
+# End of Contact
