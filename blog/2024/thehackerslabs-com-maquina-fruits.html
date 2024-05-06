@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>thehackerslabs.com: máquina Fruits - Hackers ficticios que hacen historia</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Hackers ficticios que hacen historia" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="thehackerslabs.com: máquina Fruits" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits" />
+<meta property="og:site_name" content="Hackers ficticios que hacen historia" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/thehackerslabs.com_fruits/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-05T20:10:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/thehackerslabs.com_fruits/portada.png" />
+<meta property="twitter:title" content="thehackerslabs.com: máquina Fruits" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-05-05T20:10:00+02:00","datePublished":"2024-05-05T20:10:00+02:00","description":"danielprz writeups y cosas…","headline":"thehackerslabs.com: máquina Fruits","image":"http://localhost:4000/blog/assets/thehackerslabs.com_fruits/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits"},"url":"http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>thehackerslabs.com: máquina Fruits</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#ssh-brute-force" class="no-decoration">SSH Brute Force</a></code>
+    
+      <code class="posttag"><a href="/tags/#nmap" class="no-decoration">Nmap</a></code>
+    
+      <code class="posttag"><a href="/tags/#privileged-escalation" class="no-decoration">Privileged Escalation</a></code>
+    
+      <code class="posttag"><a href="/tags/#hydra" class="no-decoration">Hydra</a></code>
+    
+      <code class="posttag"><a href="/tags/#apache-server" class="no-decoration">Apache Server</a></code>
+    
+      <code class="posttag"><a href="/tags/#wordlist-attack" class="no-decoration">Wordlist Attack</a></code>
+    
+      <code class="posttag"><a href="/tags/#directory-traversal" class="no-decoration">Directory Traversal</a></code>
+    
+      <code class="posttag"><a href="/tags/#linux-security-bypass" class="no-decoration">Linux Security Bypass</a></code>
+    
+      <code class="posttag"><a href="/tags/#pentesting-lab" class="no-decoration">Pentesting Lab</a></code>
+    
+      <code class="posttag"><a href="/tags/#fuzzing" class="no-decoration">Fuzzing</a></code>
+    
+      <code class="posttag"><a href="/tags/#root-access" class="no-decoration">Root Access</a></code>
+    
+      <code class="posttag"><a href="/tags/#sudo" class="no-decoration">Sudo</a></code>
+    
+      <code class="posttag"><a href="/tags/#find-exploit" class="no-decoration">Find Exploit</a></code>
+    
+  </div>
+  <time datetime="2024-05-05T20:10:00+02:00" class="by-line">05 May 2024</time>
+  <p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+En este informe, veremos un recorrido detallado de los pasos que tomamos para explotar una máquina vulnerable del laboratorio de TheHackersLabs.com. La máquina objetivo es un sistema con el nombre de host <code class="language-plaintext highlighter-rouge">Fruits</code>. Mediante el uso de herramientas de reconocimiento como <code class="language-plaintext highlighter-rouge">nmap</code>, <code class="language-plaintext highlighter-rouge">wfuzz</code> y <code class="language-plaintext highlighter-rouge">hydra</code>, junto con técnicas de fuerza bruta, logramos comprometer con éxito el sistema objetivo.</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://thehackerslabs.com/fruits/">thehackerslabs: Fruits</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>Fácil.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br /></p>
+
+<p>Para iniciar el proceso de <code class="language-plaintext highlighter-rouge">vulnerar</code> esta máquina, lo primero que haremos es con ayuda de <code class="language-plaintext highlighter-rouge">nmap</code> ver a qué nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 192.168.1.122  <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+<p>donde:</p>
+
+<p><code class="language-plaintext highlighter-rouge">-p-</code>: Escanea todos los puertos existentes (0-65365)</p>
+
+<p><code class="language-plaintext highlighter-rouge">-Pn</code>: Evita que <code class="language-plaintext highlighter-rouge">nmap</code> realice un descubrimiento de host antes de realizar el escaneo</p>
+
+<p><code class="language-plaintext highlighter-rouge">-sS</code>: Realiza un escaneo de puertos TCP mediante un escaneo SYN. Esto implica enviar un paquete SYN y esperar una respuesta; si el puerto está abierto, el host responderá con un paquete SYN-ACK</p>
+
+<p><code class="language-plaintext highlighter-rouge">--min-rate</code>: Configura la tasa mínima de paquetes enviados a 5000 paquetes por segundo. Esto acelera el escaneo, ya que <code class="language-plaintext highlighter-rouge">nmap</code> enviará paquetes a una tasa muy alta</p>
+
+<p><code class="language-plaintext highlighter-rouge">--open</code>: Esta opción le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-oX</code>: Guarda la salida del escaneo en un archivo XML llamado <code class="language-plaintext highlighter-rouge">report.xml</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">-v</code>: Aumenta la verbosidad de la salida de <code class="language-plaintext highlighter-rouge">nmap</code>, proporcionando más detalles sobre lo que está haciendo <code class="language-plaintext highlighter-rouge">nmap</code>.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_1.JPG" alt="" />
+<br /></p>
+
+<p>Obtenemos 2 puertos abiertos,  <code class="language-plaintext highlighter-rouge">22 -&gt; ssh</code> y <code class="language-plaintext highlighter-rouge">80 -&gt; http</code>  .</p>
+
+<p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p222</span>,80 192.168.1.122 <span class="nt">-oN</span> ports_version
+</code></pre></div></div>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinación de ambos comandos</em>.</p>
+</blockquote>
+
+<p><img src="/blog/assets/thehackerslabs.com_fruits/paso_2.JPG" alt="" /></p>
+
+<p>Nos fijamos que por el <code class="language-plaintext highlighter-rouge">puerto 22</code> se encuentra un servicio <code class="language-plaintext highlighter-rouge">ssh</code> no vulnerable, ya que está en últimas versiones. Pues debemos de ir a la web y ver que nos encontramos.</p>
+
+<p>Para ver con qué tecnologías se encuentra la web corremos el siguiente comando:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb http://192.168.1.122
+</code></pre></div></div>
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_3.JPG" alt="" />
+<br /></p>
+
+<p>Vemos que hay un <code class="language-plaintext highlighter-rouge">Apache 2.4.57</code> el cual, hasta el momento, no es vulnerable. Pues no nos queda más opción que entrar a la web y buscar un vector de entrada.
+<br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_4.JPG" alt="" />
+<br /></p>
+
+<p>Aparentemente, es una web con un buscador sencillo. Pero tiene un error. Cuando presionamos sobre el botón <code class="language-plaintext highlighter-rouge">Buscar</code> nos manda al archivo php llamado <code class="language-plaintext highlighter-rouge">buscar.php</code> el cual tiene el parámetro <code class="language-plaintext highlighter-rouge">búsqueda</code> y este siempre dará error, no importa que busquemos.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_5.JPG" alt="" />
+<br /></p>
+
+<p>Es momento de hacer un <code class="language-plaintext highlighter-rouge">web fuzzing</code> con un diccionario especializado para estos casos y que también busque las extensiones <code class="language-plaintext highlighter-rouge">html</code> y <code class="language-plaintext highlighter-rouge">php</code>. Quedando de la siguiente forma:</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_6.JPG" alt="" />
+<br /></p>
+
+<p>Luego de un tiempo, cuando vemos los resultados del <code class="language-plaintext highlighter-rouge">fuzzeo</code> nos percatamos que hay un archivo de extensión <code class="language-plaintext highlighter-rouge">php</code> llamado <code class="language-plaintext highlighter-rouge">fruits.php</code>. El cual si ingresamos en él, es una página en blanco.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_7.JPG" alt="" />
+<br /></p>
+
+<p>Esto nos lleva a pensar que, al igual que <code class="language-plaintext highlighter-rouge">buscar.php</code> este recibe un parámetro el cual no tenemos.</p>
+
+<p>Para determinar cuál es el parámetro que necesitamos, lo que debemos correr es, con una ruta del sistema, en este caso <code class="language-plaintext highlighter-rouge">/etc/passwd</code>, hacer fuerza bruta con el valor del parámetro. Quedando el comando <code class="language-plaintext highlighter-rouge">wfuzz</code> de la siguiente manera:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfuzz <span class="nt">-c</span> <span class="nt">--hc</span> 404 <span class="nt">--hl</span> 1 <span class="nt">-t</span> 200 <span class="nt">-w</span> /usr/share/wordlist/dirbuster/directory-list-2.3-medium.txt <span class="s1">'http://193.168.1.122/fruits.php?FUZZ=/etc/passwd'</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_8.JPG" alt="" />
+<br /></p>
+
+<p>Vemos que el comando file sí que nos da un resultado, y de paso nos imprime el valor de <code class="language-plaintext highlighter-rouge">/etc/passwd</code> el cual nos servirá para ver los usuarios del sistema</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+messagebus:x:100:107::/nonexistent:/usr/sbin/nologin
+sshd:x:101:65534::/run/sshd:/usr/sbin/nologin
+mysql:x:102:110:MySQL Server,,,:/nonexistent:/bin/false
+bananaman:x:1001:1001::/home/bananaman:/bin/bash
+</code></pre></div></div>
+<p>de aquí nos interesa <code class="language-plaintext highlighter-rouge">bananaman</code> ya que es un usuario del sistema y tiene acceso a la <code class="language-plaintext highlighter-rouge">/bin/bash</code>.</p>
+
+<p>Con ayuda de <code class="language-plaintext highlighter-rouge">Hydra</code>, ejecutamos un ataque de <code class="language-plaintext highlighter-rouge">fuerza bruta</code> mediante el <code class="language-plaintext highlighter-rouge">puerto 22</code></p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_9.JPG" alt="" />
+<br /></p>
+
+<p>Determinamos que su clave es <code class="language-plaintext highlighter-rouge">celtic</code>, así que es momento de acceder mediante <code class="language-plaintext highlighter-rouge">ssh</code> a la máquina virtual.</p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_10.JPG" alt="" />
+<br /></p>
+
+<p>Una vez ya accedimos a la máquina, es momento de determinar cuáles comandos y/o binarios tenemos acceso para poder explotar y <code class="language-plaintext highlighter-rouge">escalar privilegios</code>.</p>
+
+<p>Con la ejecución del código <code class="language-plaintext highlighter-rouge">sudo -l</code> vemos que tenemos acceso como usuario root al comando <code class="language-plaintext highlighter-rouge">find</code></p>
+
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_11.JPG" alt="" />
+<br /></p>
+
+<p>Si vamos a la web de gtfobins<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> vemos que es vulnerable y podemos obtener acceso <code class="language-plaintext highlighter-rouge">root</code> mediante este, con la siguiente secuencia de comandos</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/bin/find <span class="nt">-exec</span> /bin/sh <span class="nt">-p</span> <span class="se">\;</span> <span class="nt">-quit</span>
+</code></pre></div></div>
+<p><br />
+<img src="/blog/assets/thehackerslabs.com_fruits/paso_12.JPG" alt="" />
+<br /></p>
+
+<p>Y al final obtenemos <code class="language-plaintext highlighter-rouge">root</code>, es decir, la máquina está comprometida.</p>
+
+<p><br /></p>
+<h3 id="referencias"><em>Referencias</em></h3>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://gtfobins.github.io/">Gtfobins</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>

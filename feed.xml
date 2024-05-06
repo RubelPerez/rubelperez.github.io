@@ -5,14 +5,80 @@
     <description>danielprz writeups y cosas...</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 04 May 2024 16:18:16 +0200</pubDate>
-    <lastBuildDate>Sat, 04 May 2024 16:18:16 +0200</lastBuildDate>
+    <pubDate>Mon, 06 May 2024 21:01:04 +0200</pubDate>
+    <lastBuildDate>Mon, 06 May 2024 21:01:04 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     <image>
      <url>http://localhost:4000/assets/ninja1.png</url>
      <title>Diaries of a Modern Ninja</title>
      <link>http://localhost:4000</link>
     </image>
+    
+      <item>
+        <title>thehackerslabs.com: máquina Cyberpunk</title>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/thehackerslabs.com_cyberpunk/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; Aquí veremos cómo logramos vulnerar la máquina “Cyberpunk” de The Hackers Labs. Esta máquina nos pone a prueba con una combinación interesante de vulnerabilidades y nos exige usar varias técnicas para llegar al acceso root. Se verán conceptos de programación, y codificaciones un tanto peculiar para obtener accesos máximos a esta máquina&lt;/p&gt; &lt;h3 id=&quot;enlace-de-lab&quot;&gt;Enlace de Lab:&lt;/h3&gt; &lt;p&gt;&lt;a href=&quot;https://thehackerslabs.com/cyberpunk/&quot;&gt;thehackerslabs: Cyberpunk&lt;/a&gt;.&lt;/p&gt; &lt;h3 id=&quot;dificultad&quot;&gt;Dificultad:&lt;/h3&gt;...</description>
+        <pubDate>Mon, 06 May 2024 20:10:00 +0200</pubDate>
+        <link>http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/thehackerslabs-com-maquina-cyberpunk</guid>
+        
+        <category>blog</category>
+        
+        
+        <category>Reverse Shell</category>
+        
+        <category>Python Privilege Escalation</category>
+        
+        <category>FTP Enumeration</category>
+        
+        <category>Anonymous FTP Login</category>
+        
+        <category>Nmap Scan</category>
+        
+        <category>Netcat Listener</category>
+        
+        <category>Directory Traversal</category>
+        
+        <category>Privilege Escalation</category>
+        
+      </item>
+    
+      <item>
+        <title>thehackerslabs.com: máquina Fruits</title>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/thehackerslabs.com_fruits/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; En este informe, veremos un recorrido detallado de los pasos que tomamos para explotar una máquina vulnerable del laboratorio de TheHackersLabs.com. La máquina objetivo es un sistema con el nombre de host &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fruits&lt;/code&gt;. Mediante el uso de herramientas de reconocimiento como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wfuzz&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hydra&lt;/code&gt;, junto con técnicas de fuerza bruta, logramos comprometer...</description>
+        <pubDate>Sun, 05 May 2024 20:10:00 +0200</pubDate>
+        <link>http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/thehackerslabs-com-maquina-fruits</guid>
+        
+        <category>blog</category>
+        
+        
+        <category>SSH Brute Force</category>
+        
+        <category>Nmap</category>
+        
+        <category>Privileged Escalation</category>
+        
+        <category>Hydra</category>
+        
+        <category>Apache Server</category>
+        
+        <category>Wordlist Attack</category>
+        
+        <category>Directory Traversal</category>
+        
+        <category>Linux Security Bypass</category>
+        
+        <category>Pentesting Lab</category>
+        
+        <category>Fuzzing</category>
+        
+        <category>Root Access</category>
+        
+        <category>Sudo</category>
+        
+        <category>Find Exploit</category>
+        
+      </item>
     
       <item>
         <title>dockerlab.es: máquina Move</title>
