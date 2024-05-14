@@ -124,22 +124,16 @@ Aquí veremos cómo logramos vulnerar la máquina “Cyberpunk” de The Hackers
 <img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_1.JPG" alt="" />
 <br /></p>
 
-<p>Nos fijamos que tiene varios puertos abiertos.</p>
-
-<p><code class="language-plaintext highlighter-rouge">puerto 21</code>: servicio FTP</p>
-
-<p><code class="language-plaintext highlighter-rouge">puerto 22</code>: servicio SSH</p>
-
-<p><code class="language-plaintext highlighter-rouge">puerto 80</code>: servicio http</p>
+<p>Obtenemos 2 puertos abiertos,  <code class="language-plaintext highlighter-rouge">22 -&gt; ssh</code> y <code class="language-plaintext highlighter-rouge">80 -&gt; http</code>  .</p>
 
 <p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p21</span>,22,80 192.168.1.127 <span class="nt">-oN</span> ports_version
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p222</span>,80 192.168.1.127 <span class="nt">-oN</span> ports_version
 </code></pre></div></div>
 
 <p>Donde:</p>
 
-<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>: Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
 
 <p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
 
@@ -148,6 +142,14 @@ Aquí veremos cómo logramos vulnerar la máquina “Cyberpunk” de The Hackers
 </blockquote>
 
 <p><img src="/blog/assets/thehackerslabs.com_cyberpunk/paso_2.JPG" alt="" /></p>
+
+<p>Nos fijamos que tiene varios puertos vulnerables.</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 21</code>: servicio FTP</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 22</code>: servicio SSH</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 80</code>: servicio http</p>
 
 <p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 21</code>, vemos que podemos hacer login de forma anónima, para ello ejecutamos:</p>
 
