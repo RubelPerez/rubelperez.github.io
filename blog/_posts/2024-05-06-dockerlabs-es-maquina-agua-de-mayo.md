@@ -15,7 +15,7 @@ image: /blog/assets/dockerlabs.es_agua_de_mayo/portada.png
 ### Descripción
 * * *
 <br>
-Esta máquina virtual corre sobre Debian Linux y tiene de todo un poco para que practiques tus habilidades de hacking. Está equipada con un servidor web Apache, más algunos servicios básicos como SSH en el puerto 22 y HTTP en el puerto 80, listos para ser desafiados.
+Esta máquina virtual creada con `Docker` tiene de todo un poco para que practiques tus habilidades de hacking. Está equipada con un servidor web Apache, más algunos servicios básicos como SSH en el puerto 22 y HTTP en el puerto 80, listos para ser desafiados.
 
 
 ### Enlace de Lab:
