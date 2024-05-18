@@ -165,9 +165,8 @@ En este writeup, detallamos nuestro proceso de vulneración de una máquina en n
 
 <p>Donde:</p>
 
-<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
-
-<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.
+ <strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
 
 <blockquote>
   <p><em>sCV es la combinación de ambos comandos</em>.</p>
@@ -181,13 +180,13 @@ En este writeup, detallamos nuestro proceso de vulneración de una máquina en n
 
 <p><code class="language-plaintext highlighter-rouge">puerto 80</code>: servicio http</p>
 
-<p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 80</code>, vemos que el servicio <code class="language-plaintext highlighter-rouge">Apache</code> a dia de hoy no tiene ninguna vulnerabilidad. Asi que nos tocaria navegar en la web para ver fuga de informacion cuenta.</p>
+<p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 80</code>, vemos que el servicio <code class="language-plaintext highlighter-rouge">Apache</code> a dia de hoy no tiene ninguna vulnerabilidad. Así que nos tocará navegar en la web para ver la fuga de información.</p>
 
 <p><br />
 <img src="/blog/assets/dockerlabs.es_dockerlabs/paso_3.JPG" alt="" />
 <br /></p>
 
-<p>Vemos que es una web bastante similar a la web principal de <code class="language-plaintext highlighter-rouge">dockerlabs.es</code>. No hay nada relevante en el <code class="language-plaintext highlighter-rouge">source code</code>, asi que nos tocaria hacer un fuzzing web.</p>
+<p>Vemos que es una web bastante similar a la web principal de <code class="language-plaintext highlighter-rouge">dockerlabs.es</code>. No hay nada relevante en el <code class="language-plaintext highlighter-rouge">source code</code>, así que nos tocaría hacer un fuzzing web.</p>
 
 <p>En este caso utilizaremos <code class="language-plaintext highlighter-rouge">dirb buster</code>, una herramienta para hacer fuzzing web de una manera un tanto visual, simplificando nuestra actividad.</p>
 
@@ -205,9 +204,9 @@ En este writeup, detallamos nuestro proceso de vulneración de una máquina en n
 
 <p><code class="language-plaintext highlighter-rouge">uploads</code>: Es una carpeta donde se almacenan archivos que posiblemente se suban por alguna ruta.</p>
 
-<p><code class="language-plaintext highlighter-rouge">uploads.php</code>: Es un archivo php el cual no puede ser leido, es posiblemente el script intermediario encargado de subir archivos a <code class="language-plaintext highlighter-rouge">uploads</code></p>
+<p><code class="language-plaintext highlighter-rouge">uploads.php</code>: Es un archivo php el cual no puede ser leído, es posiblemente el script intermediario encargado de subir archivos a <code class="language-plaintext highlighter-rouge">uploads</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">machine.php</code>: El mas interesante de los 3, consta de un formulario en el cual se pueden subir archivos que se almacenaran en el directorio <code class="language-plaintext highlighter-rouge">uploads</code></p>
+<p><code class="language-plaintext highlighter-rouge">machine.php</code>: El más interesante de los 3, consta de un formulario en el cual se pueden subir archivos que se almacenarán en el directorio <code class="language-plaintext highlighter-rouge">uploads</code></p>
 
 <p><br />
 <img src="/blog/assets/dockerlabs.es_dockerlabs/paso_6.JPG" alt="" />
@@ -217,19 +216,19 @@ En este writeup, detallamos nuestro proceso de vulneración de una máquina en n
 
 <p>Como evidentemente estamos frente a una posible <code class="language-plaintext highlighter-rouge">Arbitrary File Upload Vulnerability</code>.</p>
 
-<p>Abrimos <code class="language-plaintext highlighter-rouge">burp suite</code> para simplificar la tarea, subimos un archivo. Capturamos la request y la enviamos al <code class="language-plaintext highlighter-rouge">repeater</code>. Alli modificaremos extensiones hasta que encontremos una diferente a <code class="language-plaintext highlighter-rouge">zip</code> que pueda ser interpretada por el servidor y a la vez se salte las validaciones.</p>
+<p>Abrimos <code class="language-plaintext highlighter-rouge">burp suite</code> para simplificar la tarea, subimos un archivo. Capturamos la request y la enviamos al <code class="language-plaintext highlighter-rouge">repeater</code>. Allí modificaremos extensiones hasta que encontremos una diferente a <code class="language-plaintext highlighter-rouge">zip</code> que pueda ser interpretada por el servidor y a la vez se salte las validaciones.</p>
 
-<p>Para <code class="language-plaintext highlighter-rouge">PHP</code> tenemos las siguientes <code class="language-plaintext highlighter-rouge">extensions bypass</code> encontradas en hacktricks <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+<p>Para <code class="language-plaintext highlighter-rouge">PHP</code> tenemos las siguientes <code class="language-plaintext highlighter-rouge">extensiones bypass</code> encontradas en hacktricks <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <p><code class="language-plaintext highlighter-rouge">PHP</code>: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module</p>
 
-<p>Damos con la extension correcta que es <code class="language-plaintext highlighter-rouge">phar</code> y nos creamos una <code class="language-plaintext highlighter-rouge">reverse shell</code> y la enviamos mediante <code class="language-plaintext highlighter-rouge">burp suite</code> con las siguientes caracteristicas:</p>
+<p>Damos con la extensión correcta que es <code class="language-plaintext highlighter-rouge">phar</code> y nos creamos una <code class="language-plaintext highlighter-rouge">reverse shell</code> y la enviamos mediante <code class="language-plaintext highlighter-rouge">burp suite</code> con las siguientes características:</p>
 
 <p><br />
 <img src="/blog/assets/dockerlabs.es_dockerlabs/paso_7.JPG" alt="" />
 <br /></p>
 
-<p>Abrimos una <code class="language-plaintext highlighter-rouge">shell</code> en modo de escucha con <code class="language-plaintext highlighter-rouge">nc</code> mediante el codigo:</p>
+<p>Abrimos una <code class="language-plaintext highlighter-rouge">shell</code> en modo de escucha con <code class="language-plaintext highlighter-rouge">nc</code> mediante el código:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-lvnp</span> 443
 </code></pre></div></div>
@@ -246,7 +245,7 @@ En este writeup, detallamos nuestro proceso de vulneración de una máquina en n
 
 <p>Ya tenemos acceso como el usuario <code class="language-plaintext highlighter-rouge">www-data</code> al servidor</p>
 
-<p>Ahora es momento de tratar la bash, más que nada para poder hacer <code class="language-plaintext highlighter-rouge">ctrl+c</code> sin matar la <code class="language-plaintext highlighter-rouge">reverse_shell</code> y <code class="language-plaintext highlighter-rouge">ctrl+l</code> para poder limpiar la pantalla:</p>
+<p>Ahora es momento de tratar la bash, más que nada para poder hacer <code class="language-plaintext highlighter-rouge">ctrl+c</code> sin matar la <code class="language-plaintext highlighter-rouge">reverse shell</code> y <code class="language-plaintext highlighter-rouge">ctrl+l</code> para poder limpiar la pantalla:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null <span class="nt">-c</span> bash
 </code></pre></div></div>
@@ -284,12 +283,12 @@ Nos aparecerán dos números, el primero corresponde a las <code class="language
 
 <p>vemos que tenemos acceso como <code class="language-plaintext highlighter-rouge">sudo</code> a unos binarios que pueden leer archivos con permisos de <code class="language-plaintext highlighter-rouge">root</code>.</p>
 
-<p>Vamos a las rutas mas comunes donde puede haber algo de informacion y en <code class="language-plaintext highlighter-rouge">/opt/</code> encontramos algo interesante:
+<p>Vamos a las rutas más comunes donde puede haber algo de información y en <code class="language-plaintext highlighter-rouge">/opt/</code> encontramos algo interesante:
 <br />
 <img src="/blog/assets/dockerlabs.es_dockerlabs/paso_11.JPG" alt="" />
 <br /></p>
 
-<p>Vamos a GTFObins<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> y vemos como explotar estos binarios</p>
+<p>Vamos a GTFObins<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> y vemos cómo explotar estos binarios</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LFILE</span><span class="o">=</span>file_to_read
 <span class="nb">sudo cut</span> <span class="nt">-d</span> <span class="s2">""</span> <span class="nt">-f1</span> <span class="s2">"</span><span class="nv">$LFILE</span><span class="s2">"</span>
