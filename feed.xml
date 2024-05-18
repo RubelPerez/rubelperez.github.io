@@ -5,14 +5,74 @@
     <description>danielprz writeups y cosas...</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 May 2024 22:54:51 +0200</pubDate>
-    <lastBuildDate>Tue, 14 May 2024 22:54:51 +0200</lastBuildDate>
+    <pubDate>Sat, 18 May 2024 15:45:13 +0200</pubDate>
+    <lastBuildDate>Sat, 18 May 2024 15:45:13 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     <image>
      <url>http://localhost:4000/assets/ninja1.png</url>
      <title>Diaries of a Modern Ninja</title>
      <link>http://localhost:4000</link>
     </image>
+    
+      <item>
+        <title>dockerlabs.es: máquina Dockerlabs</title>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/dockerlabs.es_dockerlabs/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; En este writeup, detallamos nuestro proceso de vulneración de una máquina en nuestro laboratorio de pentesting. Utilizamos herramientas como DirBuster para realizar una enumeración de directorios y archivos sensibles. Descubrimos una vulnerabilidad en la subida de archivos que nos permitió ejecutar un shell reverso con Netcat. Posteriormente, logramos una escalada de privilegios en un sistema Linux mediante la explotación de configuraciones...</description>
+        <pubDate>Sat, 18 May 2024 12:10:00 +0200</pubDate>
+        <link>http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs</guid>
+        
+        <category>blog</category>
+        
+        
+        <category>DirBuster</category>
+        
+        <category>Web Application Brute Forcing</category>
+        
+        <category>Directory Enumeration</category>
+        
+        <category>File Upload Vulnerability</category>
+        
+        <category>Reverse Shell</category>
+        
+        <category>Netcat</category>
+        
+        <category>Privilege Escalation</category>
+        
+        <category>Linux</category>
+        
+        <category>Sudo Exploit</category>
+        
+        <category>CTF</category>
+        
+        <category>Capture The Flag</category>
+        
+        <category>Penetration Testing</category>
+        
+        <category>Kali Linux</category>
+        
+        <category>Information Security</category>
+        
+        <category>Cybersecurity</category>
+        
+        <category>Post-Exploitation</category>
+        
+        <category>Root Access</category>
+        
+        <category>File Enumeration</category>
+        
+        <category>Command Injection</category>
+        
+        <category>Brute Force Attack</category>
+        
+        <category>CTF Writeup</category>
+        
+        <category>Exploit Development</category>
+        
+        <category>Shell Access</category>
+        
+        <category>Linux Privilege Escalation</category>
+        
+      </item>
     
       <item>
         <title>dockerlabs.es: máquina Agua de Mayo</title>

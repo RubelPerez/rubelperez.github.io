@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>dockerlabs.es: máquina Dockerlabs - Hackers ficticios que hacen historia</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Hackers ficticios que hacen historia" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="dockerlabs.es: máquina Dockerlabs" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs" />
+<meta property="og:site_name" content="Hackers ficticios que hacen historia" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/dockerlabs.es_dockerlabs/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-18T12:10:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/dockerlabs.es_dockerlabs/portada.png" />
+<meta property="twitter:title" content="dockerlabs.es: máquina Dockerlabs" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-05-18T12:10:00+02:00","datePublished":"2024-05-18T12:10:00+02:00","description":"danielprz writeups y cosas…","headline":"dockerlabs.es: máquina Dockerlabs","image":"http://localhost:4000/blog/assets/dockerlabs.es_dockerlabs/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs"},"url":"http://localhost:4000/blog/2024/dockerlabs-es-maquina-dockerlabs"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>dockerlabs.es: máquina Dockerlabs</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#dirbuster" class="no-decoration">DirBuster</a></code>
+    
+      <code class="posttag"><a href="/tags/#web-application-brute-forcing" class="no-decoration">Web Application Brute Forcing</a></code>
+    
+      <code class="posttag"><a href="/tags/#directory-enumeration" class="no-decoration">Directory Enumeration</a></code>
+    
+      <code class="posttag"><a href="/tags/#file-upload-vulnerability" class="no-decoration">File Upload Vulnerability</a></code>
+    
+      <code class="posttag"><a href="/tags/#reverse-shell" class="no-decoration">Reverse Shell</a></code>
+    
+      <code class="posttag"><a href="/tags/#netcat" class="no-decoration">Netcat</a></code>
+    
+      <code class="posttag"><a href="/tags/#privilege-escalation" class="no-decoration">Privilege Escalation</a></code>
+    
+      <code class="posttag"><a href="/tags/#linux" class="no-decoration">Linux</a></code>
+    
+      <code class="posttag"><a href="/tags/#sudo-exploit" class="no-decoration">Sudo Exploit</a></code>
+    
+      <code class="posttag"><a href="/tags/#ctf" class="no-decoration">CTF</a></code>
+    
+      <code class="posttag"><a href="/tags/#capture-the-flag" class="no-decoration">Capture The Flag</a></code>
+    
+      <code class="posttag"><a href="/tags/#penetration-testing" class="no-decoration">Penetration Testing</a></code>
+    
+      <code class="posttag"><a href="/tags/#kali-linux" class="no-decoration">Kali Linux</a></code>
+    
+      <code class="posttag"><a href="/tags/#information-security" class="no-decoration">Information Security</a></code>
+    
+      <code class="posttag"><a href="/tags/#cybersecurity" class="no-decoration">Cybersecurity</a></code>
+    
+      <code class="posttag"><a href="/tags/#post-exploitation" class="no-decoration">Post-Exploitation</a></code>
+    
+      <code class="posttag"><a href="/tags/#root-access" class="no-decoration">Root Access</a></code>
+    
+      <code class="posttag"><a href="/tags/#file-enumeration" class="no-decoration">File Enumeration</a></code>
+    
+      <code class="posttag"><a href="/tags/#command-injection" class="no-decoration">Command Injection</a></code>
+    
+      <code class="posttag"><a href="/tags/#brute-force-attack" class="no-decoration">Brute Force Attack</a></code>
+    
+      <code class="posttag"><a href="/tags/#ctf-writeup" class="no-decoration">CTF Writeup</a></code>
+    
+      <code class="posttag"><a href="/tags/#exploit-development" class="no-decoration">Exploit Development</a></code>
+    
+      <code class="posttag"><a href="/tags/#shell-access" class="no-decoration">Shell Access</a></code>
+    
+      <code class="posttag"><a href="/tags/#linux-privilege-escalation" class="no-decoration">Linux Privilege Escalation</a></code>
+    
+  </div>
+  <time datetime="2024-05-18T12:10:00+02:00" class="by-line">18 May 2024</time>
+  <p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+En este writeup, detallamos nuestro proceso de vulneración de una máquina en nuestro laboratorio de pentesting. Utilizamos herramientas como DirBuster para realizar una enumeración de directorios y archivos sensibles. Descubrimos una vulnerabilidad en la subida de archivos que nos permitió ejecutar un shell reverso con Netcat. Posteriormente, logramos una escalada de privilegios en un sistema Linux mediante la explotación de configuraciones incorrectas de sudo. Este writeup cubre todas las etapas del ataque, desde la recolección de información hasta la obtención de acceso root, proporcionando una visión completa de las técnicas y herramientas empleadas en el proceso.</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://www.dockerlabs.es/">dockerlabs.es: Dockerlabs</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>Fácil.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br /></p>
+
+<p>Para iniciar el proceso de <code class="language-plaintext highlighter-rouge">vulnerar</code> esta máquina, lo primero que haremos es con ayuda de <code class="language-plaintext highlighter-rouge">nmap</code> ver a qué nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 172.17.0.2 <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+<p>donde:</p>
+
+<p><code class="language-plaintext highlighter-rouge">-p-</code>: Escanea todos los puertos existentes (0-65365)</p>
+
+<p><code class="language-plaintext highlighter-rouge">-Pn</code>: Evita que <code class="language-plaintext highlighter-rouge">nmap</code> realice un descubrimiento de host antes de realizar el escaneo</p>
+
+<p><code class="language-plaintext highlighter-rouge">-sS</code>: Realiza un escaneo de puertos TCP mediante un escaneo SYN. Esto implica enviar un paquete SYN y esperar una respuesta; si el puerto está abierto, el host responderá con un paquete SYN-ACK</p>
+
+<p><code class="language-plaintext highlighter-rouge">--min-rate</code>: Configura la tasa mínima de paquetes enviados a 5000 paquetes por segundo. Esto acelera el escaneo, ya que <code class="language-plaintext highlighter-rouge">nmap</code> enviará paquetes a una tasa muy alta</p>
+
+<p><code class="language-plaintext highlighter-rouge">--open</code>: Esta opción le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-oX</code>: Guarda la salida del escaneo en un archivo XML llamado <code class="language-plaintext highlighter-rouge">report.xml</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">-v</code>: Aumenta la verbosidad de la salida de <code class="language-plaintext highlighter-rouge">nmap</code>, proporcionando más detalles sobre lo que está haciendo <code class="language-plaintext highlighter-rouge">nmap</code>.</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_1.JPG" alt="" />
+<br /></p>
+
+<p>Obtenemos 1 puerto abierto, <code class="language-plaintext highlighter-rouge">80 -&gt; http</code>  .</p>
+
+<p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p80</span> 172.17.0.2-oN ports_version
+</code></pre></div></div>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinación de ambos comandos</em>.</p>
+</blockquote>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_2.JPG" alt="" />
+<br /></p>
+
+<p>Nos fijamos que tiene un puerto abierto.</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 80</code>: servicio http</p>
+
+<p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 80</code>, vemos que el servicio <code class="language-plaintext highlighter-rouge">Apache</code> a dia de hoy no tiene ninguna vulnerabilidad. Asi que nos tocaria navegar en la web para ver fuga de informacion cuenta.</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_3.JPG" alt="" />
+<br /></p>
+
+<p>Vemos que es una web bastante similar a la web principal de <code class="language-plaintext highlighter-rouge">dockerlabs.es</code>. No hay nada relevante en el <code class="language-plaintext highlighter-rouge">source code</code>, asi que nos tocaria hacer un fuzzing web.</p>
+
+<p>En este caso utilizaremos <code class="language-plaintext highlighter-rouge">dirb buster</code>, una herramienta para hacer fuzzing web de una manera un tanto visual, simplificando nuestra actividad.</p>
+
+<p>Lo configuramos de la siguiente forma e iniciamos el escaneo</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_4.JPG" alt="" />
+<br /></p>
+
+<p>Encontramos varias rutas interesantes:</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_5.JPG" alt="" />
+<br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">uploads</code>: Es una carpeta donde se almacenan archivos que posiblemente se suban por alguna ruta.</p>
+
+<p><code class="language-plaintext highlighter-rouge">uploads.php</code>: Es un archivo php el cual no puede ser leido, es posiblemente el script intermediario encargado de subir archivos a <code class="language-plaintext highlighter-rouge">uploads</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">machine.php</code>: El mas interesante de los 3, consta de un formulario en el cual se pueden subir archivos que se almacenaran en el directorio <code class="language-plaintext highlighter-rouge">uploads</code></p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_6.JPG" alt="" />
+<br /></p>
+
+<p>Este es el contenido de <code class="language-plaintext highlighter-rouge">machine.php</code> el cual nos pide que ingresemos un archivo a subir. Intentamos subir un archivo <code class="language-plaintext highlighter-rouge">txt</code> y nos dira el error de que <code class="language-plaintext highlighter-rouge">solo se permiten archivos zip</code></p>
+
+<p>Como evidentemente estamos frente a una posible <code class="language-plaintext highlighter-rouge">Arbitrary File Upload Vulnerability</code>.</p>
+
+<p>Abrimos <code class="language-plaintext highlighter-rouge">burp suite</code> para simplificar la tarea, subimos un archivo. Capturamos la request y la enviamos al <code class="language-plaintext highlighter-rouge">repeater</code>. Alli modificaremos extensiones hasta que encontremos una diferente a <code class="language-plaintext highlighter-rouge">zip</code> que pueda ser interpretada por el servidor y a la vez se salte las validaciones.</p>
+
+<p>Para <code class="language-plaintext highlighter-rouge">PHP</code> tenemos las siguientes <code class="language-plaintext highlighter-rouge">extensions bypass</code> encontradas en hacktricks <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+
+<p><code class="language-plaintext highlighter-rouge">PHP</code>: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module</p>
+
+<p>Damos con la extension correcta que es <code class="language-plaintext highlighter-rouge">phar</code> y nos creamos una <code class="language-plaintext highlighter-rouge">reverse shell</code> y la enviamos mediante <code class="language-plaintext highlighter-rouge">burp suite</code> con las siguientes caracteristicas:</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_7.JPG" alt="" />
+<br /></p>
+
+<p>Abrimos una <code class="language-plaintext highlighter-rouge">shell</code> en modo de escucha con <code class="language-plaintext highlighter-rouge">nc</code> mediante el codigo:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-lvnp</span> 443
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_8.JPG" alt="" />
+<br /></p>
+
+<p>Vamos al directorio <code class="language-plaintext highlighter-rouge">uploads</code> y presionamos sobre el archivo <code class="language-plaintext highlighter-rouge">reverse.php</code> y cuando vayamos a nuestro <code class="language-plaintext highlighter-rouge">nc</code> en modo de escucha nos aparecerá lo siguiente:</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_9.JPG" alt="" />
+<br /></p>
+
+<p>Ya tenemos acceso como el usuario <code class="language-plaintext highlighter-rouge">www-data</code> al servidor</p>
+
+<p>Ahora es momento de tratar la bash, más que nada para poder hacer <code class="language-plaintext highlighter-rouge">ctrl+c</code> sin matar la <code class="language-plaintext highlighter-rouge">reverse_shell</code> y <code class="language-plaintext highlighter-rouge">ctrl+l</code> para poder limpiar la pantalla:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null <span class="nt">-c</span> bash
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ctrl+z</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>raw <span class="nt">-echo</span><span class="p">;</span> <span class="nb">fg
+</span>reset xterm
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm
+<span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>bash
+</code></pre></div></div>
+
+<p>Si hacemos nano, vi o cat, la pantalla nos aparecerá pequeña y no podremos crear archivos con total libertad. Para ello, corremos lo siguiente:</p>
+
+<p>Abrimos una terminal nueva y corremos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>size
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlab.es_upload/bash.png" alt="" />
+<br />
+Nos aparecerán dos números, el primero corresponde a las <code class="language-plaintext highlighter-rouge">rows</code> y el segundo a <code class="language-plaintext highlighter-rouge">columns</code>.</p>
+
+<p>Abrimos la <code class="language-plaintext highlighter-rouge">reverse shell</code> y corremos el siguiente código:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>rows 24 columns 128
+</code></pre></div></div>
+
+<p>Buscando formas para <code class="language-plaintext highlighter-rouge">escalar privilegios</code> corremos el comando <code class="language-plaintext highlighter-rouge">sudo -l</code>.</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_12.JPG" alt="" />
+<br /></p>
+
+<p>vemos que tenemos acceso como <code class="language-plaintext highlighter-rouge">sudo</code> a unos binarios que pueden leer archivos con permisos de <code class="language-plaintext highlighter-rouge">root</code>.</p>
+
+<p>Vamos a las rutas mas comunes donde puede haber algo de informacion y en <code class="language-plaintext highlighter-rouge">/opt/</code> encontramos algo interesante:
+<br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_11.JPG" alt="" />
+<br /></p>
+
+<p>Vamos a GTFObins<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> y vemos como explotar estos binarios</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LFILE</span><span class="o">=</span>file_to_read
+<span class="nb">sudo cut</span> <span class="nt">-d</span> <span class="s2">""</span> <span class="nt">-f1</span> <span class="s2">"</span><span class="nv">$LFILE</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>Pues corremos el comando</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/bin/cut <span class="nt">-d</span> <span class="s2">""</span> <span class="nt">-f1</span> <span class="s2">"/root/clave.txt"</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_13.JPG" alt="" />
+<br /></p>
+
+<p>Obtenemos la clave de <code class="language-plaintext highlighter-rouge">root</code> la cual es <code class="language-plaintext highlighter-rouge">dockerlabsmolamogollon123</code></p>
+
+<p>Intentamos hacer login como <code class="language-plaintext highlighter-rouge">root</code> y la <code class="language-plaintext highlighter-rouge">password</code> encontrada</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_dockerlabs/paso_14.JPG" alt="" />
+<br /></p>
+
+<p>y somos usuarios <code class="language-plaintext highlighter-rouge">root</code></p>
+
+<h3 id="referencias"><em>Referencias</em></h3>
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://book.hacktricks.xyz/pentesting-web/file-upload">hacktricks: File extension Bypass</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://gtfobins.github.io/">GTFObins</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>
