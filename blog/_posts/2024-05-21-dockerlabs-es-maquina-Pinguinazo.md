@@ -13,7 +13,7 @@ image: /blog/assets/dockerlabs.es_pinguinazo/portada.png
 ### Descripción
 * * *
 <br>
-En esta guía, se documenta el proceso de explotación de vulnerabilidades en un entorno simulado utilizando Kali Linux. El writeup cubre los pasos desde la identificación de una vulnerabilidad inicial hasta la obtención de acceso root en el sistema de destino.
+En esta guía, veremos como podremos vulnerar una máquina realizada en imágenes docker la cual vamos a examinar, a hacer varias reverse shell y además de, conocer un poco acera de las `SSTI (Server Side Template Injection)`
 
 
 ### Enlace de Lab:
