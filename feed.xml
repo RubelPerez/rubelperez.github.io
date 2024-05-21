@@ -5,8 +5,8 @@
     <description>danielprz writeups y cosas...</description>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 May 2024 21:16:38 +0200</pubDate>
-    <lastBuildDate>Tue, 21 May 2024 21:16:38 +0200</lastBuildDate>
+    <pubDate>Tue, 21 May 2024 21:31:46 +0200</pubDate>
+    <lastBuildDate>Tue, 21 May 2024 21:31:46 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     <image>
      <url>http://localhost:4000/assets/ninja1.png</url>
@@ -16,7 +16,7 @@
     
       <item>
         <title>dockerlabs.es: máquina Pinguinazo</title>
-        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/dockerlabs.es_pinguinazo/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; En esta guía, se documenta el proceso de explotación de vulnerabilidades en un entorno simulado utilizando Kali Linux. El writeup cubre los pasos desde la identificación de una vulnerabilidad inicial hasta la obtención de acceso root en el sistema de destino.&lt;/p&gt; &lt;h3 id=&quot;enlace-de-lab&quot;&gt;Enlace de Lab:&lt;/h3&gt; &lt;p&gt;&lt;a href=&quot;https://www.dockerlabs.es/&quot;&gt;dockerlabs.es: Pinguinazo&lt;/a&gt;.&lt;/p&gt; &lt;h3 id=&quot;dificultad&quot;&gt;Dificultad:&lt;/h3&gt; &lt;p&gt;Fácil.&lt;/p&gt; &lt;h3 id=&quot;solución&quot;&gt;Solución&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;p&gt;Para iniciar el proceso...</description>
+        <description>&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/blog/assets/dockerlabs.es_pinguinazo/portada.png&quot; alt=&quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt; &lt;h3 id=&quot;descripción&quot;&gt;Descripción&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt; En esta guía, veremos como podremos vulnerar una máquina realizada en imágenes docker la cual vamos a examinar, a hacer varias reverse shell y además de, conocer un poco acera de las &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SSTI (Server Side Template Injection)&lt;/code&gt;&lt;/p&gt; &lt;h3 id=&quot;enlace-de-lab&quot;&gt;Enlace de Lab:&lt;/h3&gt; &lt;p&gt;&lt;a href=&quot;https://www.dockerlabs.es/&quot;&gt;dockerlabs.es: Pinguinazo&lt;/a&gt;.&lt;/p&gt; &lt;h3 id=&quot;dificultad&quot;&gt;Dificultad:&lt;/h3&gt; &lt;p&gt;Fácil.&lt;/p&gt; &lt;h3 id=&quot;solución&quot;&gt;Solución&lt;/h3&gt; &lt;hr /&gt; &lt;p&gt;&lt;br /&gt;&lt;/p&gt; &lt;p&gt;Para iniciar el proceso de &lt;code...</description>
         <pubDate>Tue, 21 May 2024 23:10:00 +0200</pubDate>
         <link>http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo</link>
         <guid isPermaLink="true">http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo</guid>
